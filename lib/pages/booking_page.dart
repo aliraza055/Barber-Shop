@@ -22,8 +22,32 @@ class _BookingPageState extends State<BookingPage> {
           style: TextStyle(
             color: Colors.white60,fontSize: 30,
             fontWeight: FontWeight.w400),),
+                        SizedBox(height: 20,),
+           Center(
+  child: Container(
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: Colors.white24,  // border color
+        width: 2.0,          // border thickness
+        style: BorderStyle.solid, // solid line (default)
+      ),
+      borderRadius: BorderRadius.circular(10), // optional: rounded corners
+    ),
+    padding: EdgeInsets.all(10),
+    child: Text(
+      "Classic Shaving",
+      style: TextStyle(
+        color: Colors.white70,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ),
+)
+,
             SizedBox(height: 20,),
-            Image.asset('assets/dicount.png',height: 100,width: double.infinity,fit: BoxFit.fill,)
+            Image.asset('assets/boy.jpg',height: 100,width: double.infinity,fit: BoxFit.cover,),
+
         ],
       ),
      ),
