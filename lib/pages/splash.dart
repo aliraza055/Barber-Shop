@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -20,9 +21,10 @@ class _SplashState extends State<Splash> {
               child: Image.asset("assets/barber.png",),
             ),
             SizedBox(height: 50,),
-           GestureDetector(
+           GestureDetector
+           (
   onTap: () {
-    print("Button tapped!");
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>HomePage()));
   },
   child: Container(
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
