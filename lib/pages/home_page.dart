@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/booking_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,26 +39,31 @@ class _HomePageState extends State<HomePage> {
            SizedBox(height: 10,),
              Text("Services",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
            SizedBox(height: 20,),  
-             Container(
-              padding: EdgeInsets.only(top: 20,left: 10,right: 10),
-              margin: EdgeInsets.only(left: 10,right: 10),
-              height: 150,
-           //   width: 150,
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(12),
-                
-              ),
-              child: Column(
-                children: [
-                  Image.asset('assets/barber.png',height: 70,width: 70,),
-                             SizedBox(height: 10,),
-
-             Text("Classic Shaving",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-
+             GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage()));
+              },
+               child: Container(
+                padding: EdgeInsets.only(top: 20,left: 10,right: 10),
+                margin: EdgeInsets.only(left: 10,right: 10),
+                height: 150,
+                          //   width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(12),
                   
-                ],
-              )
+                ),
+                child: Column(
+                  children: [
+                    Image.asset('assets/barber.png',height: 70,width: 70,),
+                               SizedBox(height: 10,),
+               
+               Text("Classic Shaving",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+               
+                    
+                  ],
+                )
+               ),
              )
           ],
         ),
