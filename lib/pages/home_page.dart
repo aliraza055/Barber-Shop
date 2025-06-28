@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
              child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                 mainAxisSpacing: 10,
+                mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 childAspectRatio: 3/4,
                 ),
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                itemBuilder: (context, index){
                 return  GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage(name: services[index].name,)));
                 },
                  child: Container(
                   padding: EdgeInsets.only(top: 20,left: 10,right: 10),

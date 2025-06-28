@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BookingPage extends StatefulWidget {
-  const BookingPage({super.key});
+  String name;
+   BookingPage({super.key,required this.name});
 
   @override
   State<BookingPage> createState() => _BookingPageState();
@@ -35,7 +36,7 @@ class _BookingPageState extends State<BookingPage> {
     ),
     padding: EdgeInsets.all(10),
     child: Text(
-      "Classic Shaving",
+      widget.name,
       style: TextStyle(
         color: Colors.white70,
         fontSize: 30,
