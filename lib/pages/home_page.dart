@@ -1,3 +1,4 @@
+import 'package:barber_shop/model/services_model.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<ServicesModel> services=[];
+  @override
+  void initState() {
+    super.initState();
+    services=ServicesModel.getServices();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +45,12 @@ class _HomePageState extends State<HomePage> {
             Divider(),
            SizedBox(height: 10,),
              Text("Services",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-           SizedBox(height: 20,),  
-             GestureDetector(
+           SizedBox(height: 20,),
+           GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemCount: services.length,
+             itemBuilder: (context, index){
+              return  GestureDetector(
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage()));
               },
@@ -55,16 +66,20 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Column(
                   children: [
-                    Image.asset('assets/barber.png',height: 70,width: 70,),
+                    Image.asset(services[index].image,height: 70,width: 70,),
                                SizedBox(height: 10,),
                
-               Text("Classic Shaving",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+               Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
                
                     
                   ],
                 )
                ),
-             )
+             );
+
+             })  
+          
+            
           ],
         ),
       ),
