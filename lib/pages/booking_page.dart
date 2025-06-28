@@ -46,7 +46,7 @@ class _BookingPageState extends State<BookingPage> {
 )
 ,
             SizedBox(height: 20,),
-            Image.asset('assets/boy.jpg',height: 100,width: double.infinity,fit: BoxFit.cover,),
+            Image.asset('assets/discount.png',height: 100,width: double.infinity,fit: BoxFit.cover,),
 
         ],
       ),
