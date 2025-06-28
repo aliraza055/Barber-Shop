@@ -46,38 +46,45 @@ class _HomePageState extends State<HomePage> {
            SizedBox(height: 10,),
              Text("Services",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
            SizedBox(height: 20,),
-           GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemCount: services.length,
-             itemBuilder: (context, index){
-              return  GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage()));
-              },
-               child: Container(
-                padding: EdgeInsets.only(top: 20,left: 10,right: 10),
-                margin: EdgeInsets.only(left: 10,right: 10),
-                height: 150,
-                          //   width: 150,
-                decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(12),
-                  
+           Expanded(
+             child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                 mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 3/4,
                 ),
-                child: Column(
-                  children: [
-                    Image.asset(services[index].image,height: 70,width: 70,),
-                               SizedBox(height: 10,),
-               
-               Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-               
+              itemCount: services.length,
+               itemBuilder: (context, index){
+                return  GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage()));
+                },
+                 child: Container(
+                  padding: EdgeInsets.only(top: 20,left: 10,right: 10),
+                  margin: EdgeInsets.only(left: 10,right: 10),
+                  height: 150,
+                            //   width: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(12),
                     
-                  ],
-                )
-               ),
-             );
-
-             })  
+                  ),
+                  child: Column(
+                    children: [
+                      Image.asset(services[index].image,height: 70,width: 70,),
+                                 SizedBox(height: 10,),
+                 
+                 Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                 
+                      
+                    ],
+                  )
+                 ),
+               );
+             
+               }),
+           )  
           
             
           ],
