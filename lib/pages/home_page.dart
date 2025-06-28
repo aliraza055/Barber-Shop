@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 // Text("data",style: TextStyle(color: Colors.white))
-                Image.asset('assets/barber.png',height: 50,width: 50,)
+                Image.asset('assets/boy.jpg',height: 50,width: 50,)
               ],
             ),
             SizedBox(height: 10,),
