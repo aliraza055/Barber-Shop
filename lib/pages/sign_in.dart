@@ -16,6 +16,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -25,8 +26,7 @@ class _SignInState extends State<SignIn> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
         colors: [
-          Colors.red,// Purple-ish red
-            // Color(0xFF8E2DE2), 
+          Colors.red,
             Colors.black
         ],
             )
@@ -36,7 +36,6 @@ class _SignInState extends State<SignIn> {
         Container(
           padding: EdgeInsets.only(left: 24,top: 40,right: 24),
           margin: EdgeInsets.only(top: 200),
-         // height: MediaQuery.of(context).size.height/2,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight: Radius.circular(60))
