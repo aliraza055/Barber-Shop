@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 margin: EdgeInsets.only(top: 40),
                 width: MediaQuery.of(context).size.width,
-                height: 50,
+                height:  50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(colors: [
@@ -78,7 +78,18 @@ class _SignUpState extends State<SignUp> {
                     Colors.black87
                   ])
                 ),
-                child: Center(child: Text("Sign Up",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                child: Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+              ),
+              SizedBox(height: 30,),
+              Row(
+              //  crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Already have an account?",textAlign:TextAlign.end,),
+                  SizedBox(width: 10,),
+              Text("Sign In",
+              style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold))
+                ],
               )
             ],
           )
