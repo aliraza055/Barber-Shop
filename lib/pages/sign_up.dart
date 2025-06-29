@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
           child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         Container(
-          padding: EdgeInsets.only(left: 20,top: 40,right: 20),
+          padding: EdgeInsets.only(left: 24,top: 40,right: 24),
           margin: EdgeInsets.only(top: 200),
          // height: MediaQuery.of(context).size.height/2,
           decoration: BoxDecoration(
@@ -66,6 +66,19 @@ class _SignUpState extends State<SignUp> {
                   hintText: "Enter your password",
                   prefixIcon: Icon(Icons.man)
                 ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(colors: [
+                    Colors.red,
+                    Colors.black87
+                  ])
+                ),
+                child: Center(child: Text("Sign Up",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
               )
             ],
           )
