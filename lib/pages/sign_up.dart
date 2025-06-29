@@ -11,20 +11,27 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(top: 70,left: 20),
-        height: MediaQuery.of(context).size.height/3,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-      colors: [
-        Colors.red,// Purple-ish red
-    // Color(0xFF8E2DE2), 
-    Colors.black
-      ],
-          )
+      body: Stack(
+        children: [
+          Container(
+          padding: EdgeInsets.only(top: 70,left: 20),
+          height: MediaQuery.of(context).size.height/3,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+        colors: [
+          Colors.red,// Purple-ish red
+            // Color(0xFF8E2DE2), 
+            Colors.black
+        ],
+            )
+          ),
+          child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
-        child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+        
+
+        ],
+       
       ),
     );
   }
