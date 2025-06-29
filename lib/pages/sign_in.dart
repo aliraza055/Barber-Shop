@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp> {
         ],
             )
           ),
-          child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+          child: Text("Hello \n Login!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         Container(
           padding: EdgeInsets.only(left: 24,top: 40,right: 24),
@@ -78,22 +78,17 @@ class _SignUpState extends State<SignUp> {
                     Colors.black87
                   ])
                 ),
-                child: Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                child: Center(child: Text("SIGN In",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
               ),
               SizedBox(height: 30,),
               Row(
               //  crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("Already have an account?",textAlign:TextAlign.end,),
+                  Text("Don't have an account?",textAlign:TextAlign.end,),
                   SizedBox(width: 10,),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
-                },
-                child: Text("Sign In",
-                style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)),
-              )
+              Text("Sign Up",
+              style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold))
                 ],
               )
             ],
