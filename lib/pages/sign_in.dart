@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
         ],
             )
           ),
-          child: Text("Hello \n Login!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+          child: Text(" Hello \n Sign In!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         Container(
           padding: EdgeInsets.only(left: 24,top: 40,right: 24),
@@ -39,21 +39,14 @@ class _SignInState extends State<SignIn> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Name",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Enter your name",
-                  prefixIcon: Icon(Icons.man)
-                ),
-              ),
+        
                             SizedBox(height: 20,),
 
               Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
               SizedBox(height: 20,),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Enter your Gmail",
+                  hintText: "Enter your gmail",
                   prefixIcon: Icon(Icons.email)
                 ),
               ),
@@ -78,7 +71,7 @@ class _SignInState extends State<SignIn> {
                     Colors.black87
                   ])
                 ),
-                child: Center(child: Text("SIGN In",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                child: Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
               ),
               SizedBox(height: 30,),
               Row(

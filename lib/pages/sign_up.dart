@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -89,7 +90,7 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(width: 10,),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>SignIn()));
                 },
                 child: Text("Sign In",
                 style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)),
