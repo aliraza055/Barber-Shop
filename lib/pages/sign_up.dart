@@ -15,7 +15,7 @@ class _SignUpState extends State<SignUp> {
         children: [
           Container(
           padding: EdgeInsets.only(top: 70,left: 20),
-          height: MediaQuery.of(context).size.height/3,
+          height: MediaQuery.of(context).size.height/2,
           width: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -29,10 +29,46 @@ class _SignUpState extends State<SignUp> {
           child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         Container(
+          padding: EdgeInsets.only(left: 20,top: 40,right: 20),
+          margin: EdgeInsets.only(top: 200),
          // height: MediaQuery.of(context).size.height/2,
           decoration: BoxDecoration(
-            color: Colors.white
+            color: Colors.white,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight: Radius.circular(60))
           ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Name",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+              SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Enter your name",
+                  prefixIcon: Icon(Icons.man)
+                ),
+              ),
+                            SizedBox(height: 20,),
+
+              Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+              SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Enter your Gmail",
+                  prefixIcon: Icon(Icons.email)
+                ),
+              ),
+                            SizedBox(height: 20,),
+
+              Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+              SizedBox(height: 10,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Enter your password",
+                  prefixIcon: Icon(Icons.man)
+                ),
+              )
+            ],
+          )
         )
         
 
