@@ -28,6 +28,12 @@ class _SignUpState extends State<SignUp> {
           ),
           child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
+        Container(
+         // height: MediaQuery.of(context).size.height/2,
+          decoration: BoxDecoration(
+            color: Colors.white
+          ),
+        )
         
 
         ],
