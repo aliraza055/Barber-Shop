@@ -8,6 +8,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final _keyform=GlobalKey<FormState>();
+  final _gamilController=TextEditingController();
+    final _passwordController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -36,55 +40,81 @@ class _SignInState extends State<SignIn> {
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight: Radius.circular(60))
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-        
-                            SizedBox(height: 20,),
-
-              Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
-              SizedBox(height: 20,),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Enter your gmail",
-                  prefixIcon: Icon(Icons.email)
+          child: Form(
+            key: _keyform,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                    
+                              SizedBox(height: 20,),
+            
+                Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                SizedBox(height: 20,),
+                TextFormField(
+                  validator: (value) {
+                    if(value==null || value.isEmpty){
+                     return "Enter your name";
+                    }
+                    return null;
+                  },
+                  controller: _gamilController,
+                  decoration: InputDecoration(
+                    hintText: "Enter your gmail",
+                    prefixIcon: Icon(Icons.email)
+                  ),
                 ),
-              ),
-                            SizedBox(height: 20,),
-
-              Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
-              SizedBox(height: 10,),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Enter your password",
-                  prefixIcon: Icon(Icons.man)
+                              SizedBox(height: 20,),
+            
+                Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                SizedBox(height: 10,),
+                TextFormField(
+                      validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "This field cannot be empty"; 
+                    }
+                    return null;
+                  },
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    hintText: "Enter your password",
+                    prefixIcon: Icon(Icons.man)
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 40),
-                width: MediaQuery.of(context).size.width,
-                height:  50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  gradient: LinearGradient(colors: [
-                    Colors.red,
-                    Colors.black87
-                  ])
+                GestureDetector(
+                  onTap: (){
+                    if(_keyform.currentState!.validate()){
+                      _gamilController.clear();
+                      _passwordController.clear();
+                      print("you are login !");
+                    }
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 40),
+                    width: MediaQuery.of(context).size.width,
+                    height:  50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(colors: [
+                        Colors.red,
+                        Colors.black87
+                      ])
+                    ),
+                    child: Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                  ),
                 ),
-                child: Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
-              ),
-              SizedBox(height: 30,),
-              Row(
-              //  crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("Don't have an account?",textAlign:TextAlign.end,),
-                  SizedBox(width: 10,),
-              Text("Sign Up",
-              style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold))
-                ],
-              )
-            ],
+                SizedBox(height: 30,),
+                Row(
+                //  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Don't have an account?",textAlign:TextAlign.end,),
+                    SizedBox(width: 10,),
+                Text("Sign Up",
+                style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold))
+                  ],
+                )
+              ],
+            ),
           )
         )
         
