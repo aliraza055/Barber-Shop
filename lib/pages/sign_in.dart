@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -109,8 +110,13 @@ class _SignInState extends State<SignIn> {
                   children: [
                     Text("Don't have an account?",textAlign:TextAlign.end,),
                     SizedBox(width: 10,),
-                Text("Sign Up",
-                style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold))
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
+                  },
+                  child: Text("Sign Up",
+                  style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)),
+                )
                   ],
                 )
               ],

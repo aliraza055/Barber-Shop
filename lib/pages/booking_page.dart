@@ -71,11 +71,9 @@ class _BookingPageState extends State<BookingPage> {
                       Icon(Icons.calendar_month),
                       SizedBox(width: 5,),
                       Text('15/05/2025',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                      
+                     
                     ],
                   ),
-
-
                 ],
               ),
             ),
