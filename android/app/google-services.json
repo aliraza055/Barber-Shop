@@ -5,6 +5,7 @@
     "storage_bucket": "barber-app-cbe23.firebasestorage.app"
   },
   "client": [
+    
     {
       "client_info": {
         "mobilesdk_app_id": "1:184474074094:android:86c7a74372797f7cd42cff",
