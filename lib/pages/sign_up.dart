@@ -47,7 +47,7 @@ class _SignUpState extends State<SignUp> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Name",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
+                SizedBox(height: 10,),
                 TextFormField(
                 controller: _nameController,
                 validator: (value) {
@@ -64,7 +64,7 @@ class _SignUpState extends State<SignUp> {
                               SizedBox(height: 20,),
             
                 Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
-                SizedBox(height: 20,),
+                SizedBox(height: 10,),
                 TextFormField(
                   controller: _gmailController,
                   validator: (value) {
