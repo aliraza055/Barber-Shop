@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Registration extends StatefulWidget {
@@ -11,6 +13,11 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
+    final amountC=TextEditingController();
+    final categoryC=TextEditingController();
+    final descriptionC=TextEditingController();
+    final methodC=TextEditingController();
+
     final _keyform=GlobalKey<FormState>();
     return Scaffold(
            body: Form(
@@ -22,6 +29,7 @@ class _RegistrationState extends State<Registration> {
                   Center(child: Text("Expense tracker",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
                   SizedBox(height: 30,),
                   TextFormField(
+                    controller: amountC,
                     validator: (value) {
                       if(value==null || value.isEmpty){
                         return "Enter your amount";
@@ -40,6 +48,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                    SizedBox(height: 30,),
                   TextFormField(
+                    controller: categoryC,
                     validator: (value) {
                       if(value==null || value.isEmpty){
                         return "Enter your Category";
@@ -59,6 +68,7 @@ class _RegistrationState extends State<Registration> {
                   ) ,
                   SizedBox(height: 30,),
                   TextFormField(
+                    controller: descriptionC,
                     validator: (value) {
                       if(value==null || value.isEmpty){
                         return "Enter your Description";
@@ -76,6 +86,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                   SizedBox(height: 30,),
                    TextFormField(
+                    controller: methodC,
                     validator: (value) {
                       if(value==null || value.isEmpty){
                         return "Enter your Method";
@@ -95,7 +106,8 @@ class _RegistrationState extends State<Registration> {
                   GestureDetector(
                     onTap: (){
                       if(_keyform.currentState!.validate()){
-                        print("Okay");
+                        
+                        FirebaseFirestore.instance.collection("Expenses").doc()
                       }
                       
                     },
