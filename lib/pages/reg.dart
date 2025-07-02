@@ -1,7 +1,8 @@
 
+import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -17,8 +18,8 @@ class _RegistrationState extends State<Registration> {
     final categoryC=TextEditingController();
     final descriptionC=TextEditingController();
     final methodC=TextEditingController();
-
     final _keyform=GlobalKey<FormState>();
+
     return Scaffold(
            body: Form(
             key: _keyform,
@@ -106,8 +107,15 @@ class _RegistrationState extends State<Registration> {
                   GestureDetector(
                     onTap: (){
                       if(_keyform.currentState!.validate()){
-                        
-                        FirebaseFirestore.instance.collection("Expenses").doc()
+                         final uid=randomAlphaNumeric(10);
+                         FirebaseFirestore.instance.collection("Expenses").doc(uid).set({
+                          "amount":amountC.text,
+                          "Category":categoryC.text,
+                          "Description":descriptionC.text,
+                          "Method":methodC.text
+                        });
+                ToastError().showToast(msg: "Add Expenses", color: Colors.green, textColor: Colors.white);
+                amountC.clear();categoryC.clear();descriptionC.clear();methodC.clear();
                       }
                       
                     },
