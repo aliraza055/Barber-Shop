@@ -124,7 +124,6 @@ class _ViewExpnsesState extends State<ViewExpnses> {
                     }).catchError((error){        
                       ToastError().showToast(msg: "Error${error.toString()}", color: Colors.red, textColor: Colors.white);
                       Navigator.pop(context);
-   
                     });
                   }, child: Text("Yes"))
                 ],
