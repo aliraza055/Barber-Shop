@@ -7,7 +7,7 @@ class ToastError{
       backgroundColor: color,
       toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 2,
+        timeInSecForIosWeb: 3,
         textColor: textColor,
         fontSize: 16.0,
       );
