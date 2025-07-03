@@ -20,7 +20,6 @@ class _RegistrationState extends State<Registration> {
 
   @override
   void dispose() {
-    // Dispose controllers to avoid memory leaks
     amountC.dispose();
     categoryC.dispose();
     descriptionC.dispose();
@@ -47,14 +46,14 @@ class _RegistrationState extends State<Registration> {
                 TextFormField(
                   controller: amountC,
                   validator: (value) =>
-                      value == null || value.isEmpty ? "Enter your amount" : null,
+                      value == null || value.isEmpty ? "Enter  amount" : null,
                       keyboardType:TextInputType.number,
                   decoration: InputDecoration(
                     
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
-                    hintText: 'Enter your amount',
+                    hintText: 'Enter  amount',
                     labelText: 'Amount',
                   ),
                 ),
@@ -62,13 +61,13 @@ class _RegistrationState extends State<Registration> {
                 TextFormField(
                   controller: categoryC,
                   validator: (value) =>
-                      value == null || value.isEmpty ? "Enter your Category" : null,
+                      value == null || value.isEmpty ? "Enter  Category" : null,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     labelText: 'Category',
-                    hintText: 'Enter your Category',
+                    hintText: 'Enter  Category',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
@@ -76,13 +75,13 @@ class _RegistrationState extends State<Registration> {
                 TextFormField(
                   controller: descriptionC,
                   validator: (value) =>
-                      value == null || value.isEmpty ? "Enter your Description" : null,
+                      value == null || value.isEmpty ? "Enter  Description" : null,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     labelText: 'Description',
-                    hintText: 'Enter your Description',
+                    hintText: 'Enter Description',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
@@ -90,13 +89,13 @@ class _RegistrationState extends State<Registration> {
                 TextFormField(
                   controller: methodC,
                   validator: (value) =>
-                      value == null || value.isEmpty ? "Enter your Method" : null,
+                      value == null || value.isEmpty ? "Enter Method" : null,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     labelText: 'Payment Method',
-                    hintText: 'Enter your Payment Method',
+                    hintText: 'Enter Payment Method',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                   ),
                 ),
