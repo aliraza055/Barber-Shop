@@ -1,5 +1,6 @@
 
 import 'package:barber_shop/pages/toast_error.dart';
+import 'package:barber_shop/pages/view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
@@ -121,6 +122,7 @@ class _RegistrationState extends State<Registration> {
                       categoryC.clear();
                       descriptionC.clear();
                       methodC.clear();
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>ViewExpnses()));
                     }
                   },
                   child: Container(
@@ -146,6 +148,7 @@ class _RegistrationState extends State<Registration> {
           ),
         ),
       ),
+     
     );
   }
 }

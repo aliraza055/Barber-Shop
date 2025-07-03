@@ -19,9 +19,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor:  Color(0xFF2B1B17),
+      appBar: AppBar(
+      ),
       body: Container(
-        margin: EdgeInsets.only(top: 60,left: 20,right: 20),
+        margin: EdgeInsets.only(top: 100,left: 20,right: 20),
         child: Column(
            mainAxisAlignment: MainAxisAlignment.start,
            crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +77,8 @@ class _HomePageState extends State<HomePage> {
                                  SizedBox(height: 10,),
                  
                  Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+  
+
                  
                       
                     ],
@@ -90,6 +93,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+     
     );
   }
 }
