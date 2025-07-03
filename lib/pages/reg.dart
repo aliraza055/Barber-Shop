@@ -112,7 +112,8 @@ class _RegistrationState extends State<Registration> {
                         "amount": amountC.text,
                         "Category": categoryC.text,
                         "Description": descriptionC.text,
-                        "Method": methodC.text
+                        "Method": methodC.text,
+                        "timestamp": Timestamp.now()
                       });
                       ToastError().showToast(
                           msg: "Add Expenses",
