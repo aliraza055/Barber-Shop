@@ -90,32 +90,63 @@ class _ViewExpnsesState extends State<ViewExpnses> {
                       width: 40,
                       child: Icon(Icons.delete),),
             ),
-        Container(
-          margin: EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(12)
-        ),
-        height: 40,
-        width: 40,
-        child: Icon(Icons.edit),)
+        GestureDetector(
+          onTap: (){
+            final docs=doc[index];
+            showDialog(context: context, builder: (context){
+              final amountCon=TextEditingController(text: docs["amount"]);
+              final categoryCon=TextEditingController(text:docs["Category"]);
+              return AlertDialog(
+                title: Text("Update Expense"),
+                content: Column(
+                  children: [
+                    TextField(
+                      controller: amountCon,
+                    ),
+                    TextField(
+                      controller: categoryCon,
+                    )
+                  ],
+                ),
+                actions: [
+                  TextButton(onPressed: (){
+                    Navigator.pop(context);
+
+                  }, child: Text("NO")),
+                   TextButton(onPressed: (){
+                    FirebaseFirestore.instance.collection('Expenses').doc(docs.id).update({
+                      "amount":amountCon.text,
+                      "Category":categoryCon.text
+
+                    }).then((value){
+                      ToastError().showToast(msg: "Update Successfuly!", color: Colors.green, textColor: Colors.white);
+                     Navigator.pop(context);
+                    }).catchError((error){        
+                      ToastError().showToast(msg: "Error${error.toString()}", color: Colors.red, textColor: Colors.white);
+                      Navigator.pop(context);
+   
+                    });
+                  }, child: Text("Yes"))
+                ],
+              );
+
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.only(left: 10),
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(12)
+          ),
+          height: 40,
+          width: 40,
+          child: Icon(Icons.edit),),
+        )
         ],
       )    
     ],
   ),
-)
-;
-                      //   return Card(
-                      //     child: Column(
-                      //       children: [
-                      //  Text(doc[index]['amount']),
-        
-                      //       ],
-                      //     ),
-                      //   );
-                          
-                        
-                    
+);                
                       });
                   }
                      else {
