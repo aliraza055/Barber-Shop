@@ -131,7 +131,7 @@ class _ViewExpnsesState extends State<ViewExpnses> {
           },
           child: Container(
             margin: EdgeInsets.only(left: 10),
-          decoration: BoxDecoration(
+           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(12)
           ),
