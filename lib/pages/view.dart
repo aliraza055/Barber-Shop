@@ -117,7 +117,6 @@ class _ViewExpnsesState extends State<ViewExpnses> {
                     FirebaseFirestore.instance.collection('Expenses').doc(docs.id).update({
                       "amount":amountCon.text,
                       "Category":categoryCon.text
-
                     }).then((value){
                       ToastError().showToast(msg: "Update Successfuly!", color: Colors.green, textColor: Colors.white);
                      Navigator.pop(context);
