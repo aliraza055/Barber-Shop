@@ -129,7 +129,6 @@ class _ViewExpnsesState extends State<ViewExpnses> {
                 ],
               );
             });
-            
           },
           child: Container(
             margin: EdgeInsets.only(left: 10),
