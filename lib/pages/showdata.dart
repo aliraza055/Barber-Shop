@@ -22,34 +22,64 @@ class _ShowdataState extends State<Showdata> {
            style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
 
             ),
-            StreamBuilder(
-              stream: FirebaseFirestore.instance.collection("UserCollection").snapshots(), 
-              builder: (context,snapshot){
-                if(snapshot.connectionState==ConnectionState.waiting){
-                  Center(child: CircularProgressIndicator(strokeWidth: 2,));
-                }
-                if(snapshot.hasError){
-                  ToastError().showToast(msg: "unexpected error", color: Colors.red, textColor: Colors.white);
-                }
-                if(snapshot.hasData){
-                  List docs=snapshot.data!.docs;
-                  return ListView.builder(
-                    itemCount: docs.length,
-                    itemBuilder: (context,index){
-                      return ListTile(
-                        title: Column(
-                          children: [
-                            Text("Name: ${docs[index]['name']}"),
-                        
-                          ],
-
-                        ),
-                      );
-
-                    });
-                }
-                return Text("No data found");
-              })
+            Expanded(
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance.collection("UserCollection").snapshots(), 
+                builder: (context,snapshot){
+                  if(snapshot.connectionState==ConnectionState.waiting){
+                    Center(child: CircularProgressIndicator(strokeWidth: 2,));
+                  }
+                  if(snapshot.hasError){
+                    ToastError().showToast(msg: "unexpected error", color: Colors.red, textColor: Colors.white);
+                  }
+                  if(snapshot.hasData){
+                    List docs=snapshot.data!.docs;
+                    return ListView.builder(
+                      itemCount: docs.length,
+                      itemBuilder: (context,index){
+                        return Card(
+                          margin: EdgeInsets.only(top: 10),
+                          child: 
+                             Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,     
+                                            children: [
+                                 Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Name: ${docs[index]['name']}", style: TextStyle(fontSize: 20,),),
+                                    Text("Roll no: ${docs[index]['Roll']}", style: TextStyle(fontSize: 20,)),
+                                    Text("cgpa: ${docs[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
+                                                     
+                                  ],
+                            ),
+                                 Row(children: [
+                                  Container(
+                                    height: 50,
+                                   width: 50,
+                                   color: Colors.red,
+                                    child: Icon(Icons.delete))
+                                 ],),
+                                  Row(children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    height: 50,
+                                   width: 50,
+                                   color: Colors.green,
+                                    child: Icon(Icons.update))
+                                 ],)
+                          
+                               ],
+                             ),
+                            
+                          
+                        );
+              
+                      });
+                  }
+                  return Text("No data found");
+                }),
+            )
 
           ],
         ),
