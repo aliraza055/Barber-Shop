@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/sendUi.dart';
 import 'package:barber_shop/pages/view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ViewExpnses()
+      home: MyTodo()
     );
   }
 }
