@@ -30,7 +30,7 @@ class _MyTodoState extends State<MyTodo> {
               TextFormField(
                 controller: _nameContr,
                 validator: (value) {
-                  if(value == null || value.isNotEmpty ){
+                  if(value == null || value.isEmpty ){
                     return "This field can't be null";
                   }
                   return null;
@@ -48,7 +48,7 @@ class _MyTodoState extends State<MyTodo> {
                 TextFormField(
                   controller: _rollContr,
                 validator: (value) {
-                  if(value == null || value.isNotEmpty ){
+                  if(value == null || value.isEmpty ){
                     return "This field can't be null";
                   }
                   return null;
@@ -57,16 +57,17 @@ class _MyTodoState extends State<MyTodo> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12)
                   ),
-                  hint:const Text("Add name")
+                  hint:const Text("Add roll no")
                 ),            
               ),
              const SizedBox(
                 height: 30,
               ),
                 TextFormField(
+                  keyboardType: TextInputType.numberWithOptions(decimal: true, signed: true),
                   controller: _semContr,
                 validator: (value) {
-                  if(value == null || value.isNotEmpty ){
+                  if(value == null || value.isEmpty ){
                     return "This field can't be null";
                   }
                   return null;
@@ -75,26 +76,37 @@ class _MyTodoState extends State<MyTodo> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12)
                   ),
-                  hint:const Text("Add name")
+                  hint:const Text("Add sgpa")
                 ),            
               ),
              const SizedBox(
                 height: 30,
               ),
-              Container(
-                height: 60,
-                width: double.infinity,
-                decoration:const BoxDecoration(
-                  gradient: LinearGradient(colors: 
-                  [
-                    Colors.blue,
-                    Colors.green
-                  ]
-                  )
-                ),
-                child:const Center(
-                  child: Text(
-                    "Add",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
+              GestureDetector(
+                onTap: (){
+                  if(_keyform.currentState!.validate()){
+                    print("i ma herere");
+                  }
+                    
+
+                  
+                },
+                child: Container(
+                  height: 60,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(colors: 
+                    [
+                      Colors.blue,
+                      Colors.green
+                    ]
+                    )
+                  ),
+                  child:const Center(
+                    child: Text(
+                      "Add",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),
+                    ),
                   ),
                 ),
               )
