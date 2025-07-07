@@ -84,8 +84,13 @@ class _MyTodoState extends State<MyTodo> {
               ),
               GestureDetector(
                 onTap: (){
+                  Map<String,dynamic> data={
+                    "name":_nameContr.text,
+                    "Roll":_rollContr.text,
+                    "cgpa":_semContr.text
+                  };
                   if(_keyform.currentState!.validate()){
-                    print("i ma herere");
+                    
                   }
                     
 
