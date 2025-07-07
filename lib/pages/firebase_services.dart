@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 
 class FirebaseServices{
+  Future<void> sendData(Map<String,dynamic> data)async{
   final uid=randomAlphaNumeric(10);
-  Map<String,dynamic>? data;
-  Future<void> sendData()async{
   FirebaseFirestore.instance.collection("UserCollection").doc(uid).set(
-  data! 
-  );
-  ToastError().showToast(msg: "Add", color: Colors.red, textColor: Colors.white);
+  data
+  ).then((value){
+  ToastError().showToast(msg: "Add", color: Colors.green, textColor: Colors.white);
+
+  }).catchError((error){
+  ToastError().showToast(msg: "Error${error.toString()}", color: Colors.red, textColor: Colors.white);
+  });
   }
 }

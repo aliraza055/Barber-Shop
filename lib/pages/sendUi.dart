@@ -1,3 +1,5 @@
+import 'package:barber_shop/pages/firebase_services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MyTodo extends StatefulWidget {
@@ -12,6 +14,13 @@ class _MyTodoState extends State<MyTodo> {
   final _nameContr=TextEditingController();
     final _rollContr=TextEditingController();
   final _semContr=TextEditingController();
+  @override
+  void dispose() {
+    _nameContr.dispose();
+    _rollContr.dispose();
+    _semContr.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +96,11 @@ class _MyTodoState extends State<MyTodo> {
                   Map<String,dynamic> data={
                     "name":_nameContr.text,
                     "Roll":_rollContr.text,
-                    "cgpa":_semContr.text
+                    "cgpa":_semContr.text,
+                    "timeStamp":Timestamp.now()
                   };
                   if(_keyform.currentState!.validate()){
-                    
+                    FirebaseServices().sendData(data);
                   }
                     
 
