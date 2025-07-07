@@ -1,5 +1,4 @@
 import 'package:barber_shop/pages/sendUi.dart';
-import 'package:barber_shop/pages/view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
