@@ -41,32 +41,39 @@ class _ShowdataState extends State<Showdata> {
                           margin: EdgeInsets.only(top: 10),
                           child: 
                              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,     
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,     
                                             children: [
-                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Name: ${docs[index]['name']}", style: TextStyle(fontSize: 20,),),
-                                    Text("Roll no: ${docs[index]['Roll']}", style: TextStyle(fontSize: 20,)),
-                                    Text("cgpa: ${docs[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
-                                                     
-                                  ],
-                            ),
-                                 Row(children: [
-                                  Container(
-                                    height: 50,
-                                   width: 50,
+                                 Expanded(
+                                   child: Column(
+                                                                  //   mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Name: ${docs[index]['name']}", style: TextStyle(fontSize: 20,),),
+                                      Text("Roll no: ${docs[index]['Roll']}", style: TextStyle(fontSize: 20,)),
+                                      Text("cgpa: ${docs[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
+                                                       
+                                    ],
+                                                               ),
+                                 ),
+                                 Container(
+                                   height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
                                    color: Colors.red,
-                                    child: Icon(Icons.delete))
-                                 ],),
+                                             borderRadius: BorderRadius.circular(12)
+                                 
+                                  ),
+                                   child: Icon(Icons.delete)),
                                   Row(children: [
                                   Container(
-                                    margin: EdgeInsets.only(left: 10),
+                                  margin: EdgeInsets.only(left: 10),
                                     height: 50,
                                    width: 50,
-                                   color: Colors.green,
-                                    child: Icon(Icons.update))
+                      decoration: BoxDecoration(
+                                    color: Colors.green,
+            borderRadius: BorderRadius.circular(12)
+
+                                   ),                                    child: Icon(Icons.edit))
                                  ],)
                           
                                ],
