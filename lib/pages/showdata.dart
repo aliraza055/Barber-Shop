@@ -41,11 +41,9 @@ class _ShowdataState extends State<Showdata> {
                           margin: EdgeInsets.only(top: 10),
                           child: 
                              Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,     
-                                            children: [
+                                  children: [
                                  Expanded(
                                    child: Column(
-                                                                  //   mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Name: ${docs[index]['name']}", style: TextStyle(fontSize: 20,),),
@@ -53,27 +51,27 @@ class _ShowdataState extends State<Showdata> {
                                       Text("cgpa: ${docs[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
                                                        
                                     ],
-                                                               ),
+                                 ),
                                  ),
                                  Container(
-                                   height: 50,
+                                  height: 50,
                                   width: 50,
                                   decoration: BoxDecoration(
-                                   color: Colors.red,
-                                             borderRadius: BorderRadius.circular(12)
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(12)
                                  
                                   ),
                                    child: Icon(Icons.delete)),
                                   Row(children: [
                                   Container(
                                   margin: EdgeInsets.only(left: 10),
-                                    height: 50,
+                                   height: 50,
                                    width: 50,
-                      decoration: BoxDecoration(
-                                    color: Colors.green,
-            borderRadius: BorderRadius.circular(12)
-
-                                   ),                                    child: Icon(Icons.edit))
+                                   decoration: BoxDecoration(
+                                   color: Colors.green,
+                                    borderRadius: BorderRadius.circular(12)
+                                   ), 
+                                   child: Icon(Icons.edit))
                                  ],)
                           
                                ],
