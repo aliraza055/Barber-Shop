@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/dialogbox.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -53,15 +54,31 @@ class _ShowdataState extends State<Showdata> {
                                     ],
                                  ),
                                  ),
-                                 Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(12)
-                                 
-                                  ),
-                                   child: Icon(Icons.delete)),
+                                 GestureDetector(
+                                  onTap: () {
+                                    final doc=docs[index];
+                                    final _nameC=TextEditingController(text:doc["name"] );
+                                   final _rollC=TextEditingController(text:doc["Roll"] );
+                                    final _cgpaC=TextEditingController(text:doc["cgpa"] );
+
+                                    showDialog(
+                                      context: context,
+                                      builder:(context){
+                                        return Dialogbox(nameContr: _nameC, rollContr: _rollC, semContr: _cgpaC);
+
+                                      }
+                                      );
+                                  },
+                                   child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius: BorderRadius.circular(12)
+                                   
+                                    ),
+                                     child: Icon(Icons.delete)),
+                                 ),
                                   Row(children: [
                                   Container(
                                   margin: EdgeInsets.only(left: 10),
