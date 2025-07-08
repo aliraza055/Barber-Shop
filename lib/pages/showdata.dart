@@ -1,4 +1,5 @@
 import 'package:barber_shop/pages/dialogbox.dart';
+import 'package:barber_shop/pages/firebase_services.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +85,8 @@ class _ShowdataState extends State<Showdata> {
                                      child: Icon(Icons.edit)),
                                   ),
                                  GestureDetector(
-                                  onTap: () {
-                                 
+                                  onTap: () async{
+                               await  FirebaseServices().delete(items[index].id);
                                   },
                                    child: Container(
                                     margin: EdgeInsets.only(left: 10),

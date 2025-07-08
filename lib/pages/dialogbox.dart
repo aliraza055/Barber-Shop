@@ -29,14 +29,14 @@ class Dialogbox extends StatelessWidget {
 
         }, child: Text("No")),
           ElevatedButton(
-            onPressed: (){
+            onPressed: ()async{
+            Navigator.pop(context);
               Map<String,dynamic> updateData={
                 "name" :nameContr,
                 "Roll": rollContr,
                 "cgpa":semContr
               };
-              FirebaseServices().update(updateData, uid);
-            Navigator.pop(context);
+          await    FirebaseServices().update(updateData, uid);
                   },               
                   child: Text("Yes"))
       ],
