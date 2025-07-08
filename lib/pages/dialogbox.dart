@@ -13,7 +13,7 @@ class Dialogbox extends StatelessWidget {
       title: Center(child: Text("Update Expense")),
       content: Column(children: [
         TextField(
-          controller:semContr ,
+          controller:nameContr ,
         ),
          TextField(
           controller:rollContr ,
@@ -23,11 +23,14 @@ class Dialogbox extends StatelessWidget {
       ],),
       actions: [
         ElevatedButton(onPressed: (){
-
-        }, child: Text("Yes")),
-          ElevatedButton(onPressed: (){
             Navigator.pop(context);
-        }, child: Text("Yes"))
+
+        }, child: Text("No")),
+          ElevatedButton(
+            onPressed: (){
+            Navigator.pop(context);
+                  },               
+                  child: Text("Yes"))
       ],
     );
   }

@@ -57,16 +57,19 @@ class _ShowdataState extends State<Showdata> {
                                  GestureDetector(
                                   onTap: () {
                                     final doc=docs[index];
-                                    final _nameC=TextEditingController(text:doc["name"] );
-                                   final _rollC=TextEditingController(text:doc["Roll"] );
+                        
+                                    var _nameC=TextEditingController(text:doc["name"] );
+                                    final _rollC=TextEditingController(text:doc["Roll"] );
                                     final _cgpaC=TextEditingController(text:doc["cgpa"] );
 
                                     showDialog(
                                       context: context,
                                       builder:(context){
-                                        return Dialogbox(nameContr: _nameC, rollContr: _rollC, semContr: _cgpaC);
-
-                                      }
+                                        return Dialogbox(
+                                          nameContr: _nameC, 
+                                          rollContr: _rollC, 
+                                          semContr: _cgpaC);
+                                   }
                                       );
                                   },
                                    child: Container(
