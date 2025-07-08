@@ -33,7 +33,7 @@ class _ViewExpnsesState extends State<ViewExpnses> {
                   if(snapshot.hasError){
                    ToastError().showToast(msg: "Thre is error", color: Colors.white, textColor: Colors.red);
                   }if(snapshot.hasData){
-                    final doc=snapshot.data!.docs;
+                    List doc=snapshot.data!.docs;
                     return ListView.builder(
                       itemCount: doc.length,
                       itemBuilder: (context,index){
@@ -93,6 +93,7 @@ class _ViewExpnsesState extends State<ViewExpnses> {
         GestureDetector(
           onTap: (){
             final docs=doc[index];
+         
             showDialog(context: context, builder: (context){
               final amountCon=TextEditingController(text: docs["amount"]);
               final categoryCon=TextEditingController(text:docs["Category"]);

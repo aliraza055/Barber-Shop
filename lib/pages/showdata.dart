@@ -34,9 +34,9 @@ class _ShowdataState extends State<Showdata> {
                     ToastError().showToast(msg: "unexpected error", color: Colors.red, textColor: Colors.white);
                   }
                   if(snapshot.hasData){
-                    List docs=snapshot.data!.docs;
+                    final items=snapshot.data!.docs;
                     return ListView.builder(
-                      itemCount: docs.length,
+                      itemCount: items.length,
                       itemBuilder: (context,index){
                         return Card(
                           margin: EdgeInsets.only(top: 10),
@@ -47,33 +47,49 @@ class _ShowdataState extends State<Showdata> {
                                    child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Name: ${docs[index]['name']}", style: TextStyle(fontSize: 20,),),
-                                      Text("Roll no: ${docs[index]['Roll']}", style: TextStyle(fontSize: 20,)),
-                                      Text("cgpa: ${docs[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
+                                      Text("Name: ${items[index]['name']}", style: TextStyle(fontSize: 20,),),
+                                      Text("Roll no: ${items[index]['Roll']}", style: TextStyle(fontSize: 20,)),
+                                      Text("cgpa: ${items[index]['cgpa']}", style: TextStyle(fontSize: 20,)),
                                                        
                                     ],
                                  ),
                                  ),
-                                 GestureDetector(
-                                  onTap: () {
-                                    final doc=docs[index];
-                        
-                                    var _nameC=TextEditingController(text:doc["name"] );
-                                    final _rollC=TextEditingController(text:doc["Roll"] );
-                                    final _cgpaC=TextEditingController(text:doc["cgpa"] );
+                                   GestureDetector(
+                                    onTap: (){
+                                         final doc=items[index];                               
+                                    final nameC=TextEditingController(text:doc["name"] );
+                                    final rollC=TextEditingController(text:doc["Roll"] );
+                                    final cgpaC=TextEditingController(text:doc["cgpa"] );
 
                                     showDialog(
                                       context: context,
                                       builder:(context){
                                         return Dialogbox(
-                                          nameContr: _nameC, 
-                                          rollContr: _rollC, 
-                                          semContr: _cgpaC);
+                                          nameContr: nameC, 
+                                          rollContr: rollC, 
+                                          semContr: cgpaC,
+                                          uid:doc.id ,
+                                          )
+                                          ;
                                    }
                                       );
+                                    },
+                                    child: Container(
+                                     height: 50,
+                                     width: 50,
+                                     decoration: BoxDecoration(
+                                     color: Colors.green,
+                                      borderRadius: BorderRadius.circular(12)
+                                     ), 
+                                     child: Icon(Icons.edit)),
+                                  ),
+                                 GestureDetector(
+                                  onTap: () {
+                                 
                                   },
                                    child: Container(
-                                    height: 50,
+                                    margin: EdgeInsets.only(left: 10),
+                                   height: 50,
                                     width: 50,
                                     decoration: BoxDecoration(
                                     color: Colors.red,
@@ -82,17 +98,7 @@ class _ShowdataState extends State<Showdata> {
                                     ),
                                      child: Icon(Icons.delete)),
                                  ),
-                                  Row(children: [
-                                  Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                   height: 50,
-                                   width: 50,
-                                   decoration: BoxDecoration(
-                                   color: Colors.green,
-                                    borderRadius: BorderRadius.circular(12)
-                                   ), 
-                                   child: Icon(Icons.edit))
-                                 ],)
+                                
                           
                                ],
                              ),

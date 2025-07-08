@@ -11,9 +11,23 @@ class FirebaseServices{
   data
   ).then((value){
   ToastError().showToast(msg: "Add", color: Colors.green, textColor: Colors.white);
-
   }).catchError((error){
   ToastError().showToast(msg: "Error${error.toString()}", color: Colors.red, textColor: Colors.white);
   });
+  }
+  Future <void> update(Map<String ,dynamic> data,String uid)async{
+    await FirebaseFirestore.instance.collection("UserCollection").doc(uid).update(data).then((value){
+ToastError().showToast(msg: 'Updated succeffuly!', color: Colors.green, textColor: Colors.white);
+
+    }).catchError((e){
+ToastError().showToast(msg: 'e${e.toString()}', color: Colors.red, textColor: Colors.white);
+    });
+  }
+  Future<void> delete(String id)async{
+await FirebaseFirestore.instance.collection("UserCollection").doc(id).delete().then((value){
+ToastError().showToast(msg: 'Updated Deleted!', color: Colors.green, textColor: Colors.white);
+}).catchError((e){
+ToastError().showToast(msg: 'e${e.toString()}', color: Colors.red, textColor: Colors.white);
+});
   }
 }
