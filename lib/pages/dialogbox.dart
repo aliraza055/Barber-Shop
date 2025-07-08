@@ -32,9 +32,9 @@ class Dialogbox extends StatelessWidget {
             onPressed: ()async{
             Navigator.pop(context);
               Map<String,dynamic> updateData={
-                "name" :nameContr,
-                "Roll": rollContr,
-                "cgpa":semContr
+                "name" :nameContr.text,
+                "Roll": rollContr.text,
+                "cgpa":semContr.text
               };
           await    FirebaseServices().update(updateData, uid);
                   },               

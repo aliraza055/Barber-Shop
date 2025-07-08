@@ -1,5 +1,7 @@
+import 'package:barber_shop/model/auth.dart';
 import 'package:barber_shop/pages/dialogbox.dart';
 import 'package:barber_shop/pages/firebase_services.dart';
+import 'package:barber_shop/pages/sendUi.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +17,20 @@ class _ShowdataState extends State<Showdata> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+         child: Icon(Icons.add,color: Colors.white,),
+        onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (_)=>MyTodo()));
+      },
+      ),
       body: Container(
         margin: EdgeInsets.only(top: 40,left: 20,right: 20),
         child: Column(
           children: [
             Text(
            'All Students record',
-           style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
+           style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.blue),
 
             ),
             Expanded(
@@ -39,7 +48,12 @@ class _ShowdataState extends State<Showdata> {
                     return ListView.builder(
                       itemCount: items.length,
                       itemBuilder: (context,index){
-                        return Card(
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black12,
+                          ),
+                          padding: EdgeInsets.all(8),
                           margin: EdgeInsets.only(top: 10),
                           child: 
                              Row(
@@ -61,7 +75,7 @@ class _ShowdataState extends State<Showdata> {
                                     final nameC=TextEditingController(text:doc["name"] );
                                     final rollC=TextEditingController(text:doc["Roll"] );
                                     final cgpaC=TextEditingController(text:doc["cgpa"] );
-
+                        
                                     showDialog(
                                       context: context,
                                       builder:(context){
