@@ -1,3 +1,6 @@
+import 'package:barber_shop/model/auth.dart';
+import 'package:barber_shop/pages/firebase_services.dart';
+import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -98,7 +101,8 @@ class _SignUpState extends State<SignUp> {
                 GestureDetector(
                   onTap: (){
                     if(_formKey.currentState!.validate()){
-                      print("you have succefully created account");
+                    Auth().singUp(_nameController.text, _gmailController.text, _passwordController.text);
+                    Navigator.push(context, MaterialPageRoute(builder:(_) =>HomePage()));
                     }
                   },
                   child: Container(

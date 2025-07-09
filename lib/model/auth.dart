@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:random_string/random_string.dart';
 class Auth{
-Future<void> singUp(BuildContext context,String name,String email,String password)async{
+Future<void> singUp(String name,String email,String password)async{
     try{
    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, password: password).then((value)async{
