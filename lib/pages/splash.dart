@@ -1,4 +1,5 @@
 import 'package:barber_shop/pages/home_page.dart';
+import 'package:barber_shop/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SplashState extends State<Splash> {
            GestureDetector
            (
   onTap: () {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>HomePage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>SignUp()));
   },
   child: Container(
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -50,7 +51,6 @@ class _SplashState extends State<Splash> {
     ),
   ),
 )
-
           ],
         ),
       ),
