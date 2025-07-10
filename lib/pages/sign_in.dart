@@ -1,3 +1,4 @@
+import 'package:barber_shop/model/auth.dart';
 import 'package:barber_shop/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +84,8 @@ class _SignInState extends State<SignIn> {
                 GestureDetector(
                   onTap: (){
                     if(_keyform.currentState!.validate()){
-                    
+                      Auth().singIn(_gamilController.text, _passwordController.text);
+                      
                     }
                   },
                   child: Container(
