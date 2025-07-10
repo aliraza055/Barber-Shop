@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 100,left: 20,right: 20),
+        margin: EdgeInsets.only(top: 10,left: 20,right: 20),
         child: Column(
            mainAxisAlignment: MainAxisAlignment.start,
            crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,22 +30,23 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Hello!",style: TextStyle(color: Colors.white),),
-                     Text("Ali Raza",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
-
-                  ],
+                Expanded(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Hello!",style: TextStyle(color: Colors.black),),
+                       Text("Zohaib ",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)
+                  
+                    ],
+                  ),
                 ),
-                // Text("data",style: TextStyle(color: Colors.white))
                 Image.asset('assets/boy.jpg',height: 50,width: 50,)
               ],
             ),
             SizedBox(height: 10,),
             Divider(),
            SizedBox(height: 10,),
-             Text("Services",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+             Text("Services",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
            SizedBox(height: 20,),
            Expanded(
              child: GridView.builder(

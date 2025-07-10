@@ -83,9 +83,7 @@ class _SignInState extends State<SignIn> {
                 GestureDetector(
                   onTap: (){
                     if(_keyform.currentState!.validate()){
-                      _gamilController.clear();
-                      _passwordController.clear();
-                      print("you are login !");
+                    
                     }
                   },
                   child: Container(
