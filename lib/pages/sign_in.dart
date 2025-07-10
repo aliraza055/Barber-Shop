@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/auth.dart';
+import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +86,7 @@ class _SignInState extends State<SignIn> {
                   onTap: (){
                     if(_keyform.currentState!.validate()){
                       Auth().singIn(_gamilController.text, _passwordController.text);
-                      
+                 Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));   
                     }
                   },
                   child: Container(
