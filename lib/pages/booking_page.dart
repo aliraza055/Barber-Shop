@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class BookingPage extends StatefulWidget {
  final String name;
@@ -9,6 +10,7 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
+  DateTime today=DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +63,16 @@ class _BookingPageState extends State<BookingPage> {
               ),
               child: Column(
                 children: [
-                  Center(
-                    child: Text("Set Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+                  GestureDetector(
+                    onTap: (){
+                      TableCalendar(
+                        focusedDay: today, 
+                        firstDay: today,
+                         lastDay: DateTime.utc(2026));
+                    },
+                    child: Center(
+                      child: Text("Set Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+                    ),
                   ),
                   SizedBox(height: 5,),
                   Row(
