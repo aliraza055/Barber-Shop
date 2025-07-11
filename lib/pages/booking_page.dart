@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class BookingPage extends StatefulWidget {
  final String name;
@@ -10,7 +9,7 @@ class BookingPage extends StatefulWidget {
 }
 
 class _BookingPageState extends State<BookingPage> {
-  DateTime today=DateTime.now();
+  DateTime? today;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,38 +52,40 @@ class _BookingPageState extends State<BookingPage> {
             Image.asset('assets/discount.png',height: 100,width: double.infinity,fit: BoxFit.cover,),
              //SizedBox(height: 40,),
           
-            Container(
-              margin: EdgeInsets.only(top: 40),
-              padding: EdgeInsets.only(top: 10),
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.amber.shade200
-              ),
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      TableCalendar(
-                        focusedDay: today, 
-                        firstDay: today,
-                         lastDay: DateTime.utc(2026));
-                    },
-                    child: Center(
+            GestureDetector(
+              onTap: ()async{
+                DateTime? datepicked=await showDatePicker(
+                  context: context, 
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(), 
+                  lastDate: DateTime.utc(2026));
+                
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 10),
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.amber.shade200
+                ),
+                child: Column(
+                  children: [
+                    Center(
                       child: Text("Set Date",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
                     ),
-                  ),
-                  SizedBox(height: 5,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.calendar_month),
-                      SizedBox(width: 5,),
-                      Text('15/05/2025',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                     
-                    ],
-                  ),
-                ],
+                    SizedBox(height: 5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.calendar_month),
+                        SizedBox(width: 5,),
+                        Text('15/05/2025',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
+                       
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             
