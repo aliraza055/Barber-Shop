@@ -10,6 +10,7 @@ class BookingPage extends StatefulWidget {
 
 class _BookingPageState extends State<BookingPage> {
   DateTime? today;
+  TimeOfDay? currenttime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,10 +85,9 @@ class _BookingPageState extends State<BookingPage> {
                       children: [
                         Icon(Icons.calendar_month),
                         SizedBox(width: 5,),
-                        Text( 
-                           "${today!.day}/${today!.month}/${today!.year}"
-                          ,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                       
+                        Text(  today != null?
+                           "${today!.day}-${today!.month}-${today!.year}" : "1-1-2001"
+                          ,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),      
                       ],
                     ),
                   ],
@@ -95,32 +95,48 @@ class _BookingPageState extends State<BookingPage> {
               ),
             ),
             
-            Container(
-              margin: EdgeInsets.only(top: 40),
-              padding: EdgeInsets.only(top: 10),
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.amber.shade200
-              ),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text("Set Time",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
-                  ),
-                  SizedBox(height: 5,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.lock_clock),
-                      SizedBox(width: 10),
-                      Text('9:00 am',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                      
-                    ],
-                  ),
+            GestureDetector(
+              onTap: ()async{
+                TimeOfDay? time=await showTimePicker(
+                  context: context, 
+                  initialTime: TimeOfDay.now(),
+                  initialEntryMode: TimePickerEntryMode.dialOnly
+                  );
+                  if(time != null){
+                    setState(() {
+                    currenttime=time;
+                    });
+                  }
                   
-
-                ],
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 40),
+                padding: EdgeInsets.only(top: 10),
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.amber.shade200
+                ),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text("Set Time",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
+                    ),
+                    SizedBox(height: 5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.lock_clock),
+                        SizedBox(width: 10),
+                        Text( currenttime !=null ?
+                          '${currenttime!.format(context).toString()}': '00:00',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
+                        
+                      ],
+                    ),
+                    
+              
+                  ],
+                ),
               ),
             ),
             Container(
