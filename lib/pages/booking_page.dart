@@ -59,7 +59,11 @@ class _BookingPageState extends State<BookingPage> {
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(), 
                   lastDate: DateTime.utc(2026));
-                
+                if(datepicked !=null){
+                  setState(() {
+                    today=datepicked;
+                  });
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: 40),
@@ -80,7 +84,9 @@ class _BookingPageState extends State<BookingPage> {
                       children: [
                         Icon(Icons.calendar_month),
                         SizedBox(width: 5,),
-                        Text('15/05/2025',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
+                        Text( 
+                           "${today!.day}/${today!.month}/${today!.year}"
+                          ,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
                        
                       ],
                     ),
