@@ -1,4 +1,3 @@
-import 'package:barber_shop/model/auth.dart';
 import 'package:barber_shop/pages/dialogbox.dart';
 import 'package:barber_shop/pages/firebase_services.dart';
 import 'package:barber_shop/pages/sendUi.dart';

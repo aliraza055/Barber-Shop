@@ -10,15 +10,15 @@ class SharedPreferece {
   }
   Future getName()async{
    SharedPreferences pref=await SharedPreferences.getInstance();
-   pref.get(nameKey);
+  return pref.get(nameKey);
   }
   Future sendGmail(String gmail)async{
   SharedPreferences pref=await SharedPreferences.getInstance();
- pref.setString(gmail, gmail);
+ return pref.setString(gmail, gmail);
   }
   Future getGmail()async{
     SharedPreferences pref=await SharedPreferences.getInstance();
-    pref.get(gmail);
+   return pref.get(gmail);
   }
 
 }

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.barber_shop"
-    compileSdk = 34
+    compileSdk = 35
     ndkVersion = "29.0.13599879"
 
 

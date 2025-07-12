@@ -1,5 +1,4 @@
 import 'package:barber_shop/model/auth.dart';
-import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 

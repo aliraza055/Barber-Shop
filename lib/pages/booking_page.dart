@@ -1,3 +1,4 @@
+import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:flutter/material.dart';
 
 class BookingPage extends StatefulWidget {
@@ -12,6 +13,18 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   DateTime? today;
   TimeOfDay? currenttime;
+  String? nameK;
+  String? gmail;
+   Future<void> loadUserData() async {
+    nameK = await SharedPreferece().getName();
+    gmail = await SharedPreferece().getGmail();
+    setState(() {}); 
+  }
+  @override
+  void initState()  {
+loadUserData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +35,8 @@ class _BookingPageState extends State<BookingPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          nameK != null ?
+          Text(nameK! , style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),): CircularProgressIndicator(),
           Text("Lets the \nJourney Begins!",
           style: TextStyle(
             color: Colors.white60,fontSize: 30,
@@ -49,11 +64,8 @@ class _BookingPageState extends State<BookingPage> {
   ),
 )
 ,
-            SizedBox(height: 20,),
-           
-            Image.asset('assets/discount.png',height: 100,width: double.infinity,fit: BoxFit.cover,),
-             //SizedBox(height: 40,),
-          
+            SizedBox(height: 20,),         
+            Image.asset('assets/discount.png',height: 100,width: double.infinity,fit: BoxFit.cover,),          
             GestureDetector(
               onTap: ()async{
                 DateTime? datepicked=await showDatePicker(
