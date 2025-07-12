@@ -85,8 +85,7 @@ class _SignInState extends State<SignIn> {
                 GestureDetector(
                   onTap: (){
                     if(_keyform.currentState!.validate()){
-                      Auth().singIn(_gamilController.text, _passwordController.text);
-                 Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));   
+                      Auth().singIn(context,_gamilController.text, _passwordController.text);
                     }
                   },
                   child: Container(

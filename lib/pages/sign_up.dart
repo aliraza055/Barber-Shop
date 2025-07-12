@@ -101,8 +101,7 @@ class _SignUpState extends State<SignUp> {
                 GestureDetector(
                   onTap: (){
                     if(_formKey.currentState!.validate()){
-                    Auth().singUp(_nameController.text, _gmailController.text, _passwordController.text);
-                    Navigator.push(context, MaterialPageRoute(builder:(_) =>HomePage()));
+                    Auth().singUp(context,_nameController.text, _gmailController.text, _passwordController.text);
                     }
                   },
                   child: Container(

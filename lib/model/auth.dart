@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:random_string/random_string.dart';
 class Auth{
-Future<void> singUp(String name,String email,String password)async{
+Future<void> singUp(BuildContext context,String name,String email,String password)async{
     try{
    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, password: password).then((value)async{
@@ -20,6 +21,7 @@ Future<void> singUp(String name,String email,String password)async{
         };
     await sendData(uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);
+        Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
       });
     }on FirebaseAuthException catch(e){
       if(e.code == 'weak-password') {
@@ -34,10 +36,12 @@ Future<void> singUp(String name,String email,String password)async{
      ToastError().showToast(msg: 'An unexpected error', color: Colors.red, textColor: Colors.white);
     }
   }
-  Future<void> singIn(String email,String password)async{
+  Future<void> singIn(BuildContext context,String email,String password)async{
     try{
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
      ToastError().showToast(msg: 'Login Successful!', color: Colors.green, textColor: Colors.white);
+             Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+
     });
   } on FirebaseAuthException catch (e){
     if(e.code=='user-not-found'){
