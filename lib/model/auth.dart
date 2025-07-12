@@ -1,3 +1,4 @@
+import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +10,10 @@ Future<void> singUp(String name,String email,String password)async{
     try{
    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, password: password).then((value)async{
+      await    SharedPreferece().sendName(name);
+      await   SharedPreferece().sendGmail(email);
         String uid=randomAlphaNumeric(10);
+
         Map<String,dynamic> userinfo={
           "Name":name,
           "Gmail":email
