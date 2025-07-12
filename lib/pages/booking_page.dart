@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class BookingPage extends StatefulWidget {
  final String name;
- const BookingPage({super.key,required this.name});
+ final String image;
+ const BookingPage({super.key,required this.name,required this.image});
 
   @override
   State<BookingPage> createState() => _BookingPageState();
@@ -129,7 +130,7 @@ class _BookingPageState extends State<BookingPage> {
                         Icon(Icons.lock_clock),
                         SizedBox(width: 10),
                         Text( currenttime !=null ?
-                          '${currenttime!.format(context).toString()}': '00:00',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
+                          currenttime!.format(context).toString() : '12:00 pm',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
                         
                       ],
                     ),

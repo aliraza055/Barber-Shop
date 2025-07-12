@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                itemBuilder: (context, index){
                 return  GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage(name: services[index].name,)));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage(name: services[index].name,image: services[index].image,)));
                 },
                  child: Container(
                   padding: EdgeInsets.only(top: 20,left: 10,right: 10),

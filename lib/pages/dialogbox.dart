@@ -6,6 +6,7 @@ class Dialogbox extends StatelessWidget {
   TextEditingController  rollContr;
  TextEditingController  semContr;
  String uid;
+ 
 
    Dialogbox({super.key,required this.nameContr,required this.rollContr,required this.semContr,required this.uid});
 
