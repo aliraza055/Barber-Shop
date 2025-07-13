@@ -172,6 +172,9 @@ loadUserData();
               ),
             ),
             GestureDetector(
+              onTap: ()async{
+            await sendOrder();
+              },
               child: Container(
                 margin: EdgeInsets.only(top: 30),
                 height: 60,
