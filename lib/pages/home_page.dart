@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/services_model.dart';
+import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String userName= " ";
+  getName()async{
+userName= await SharedPreferece().getName();
+setState(() {
+  
+});
+
+  }
   List<ServicesModel> services=[];
   @override
   void initState() {
     super.initState();
+    getName();
     services=ServicesModel.getServices();
   }
   @override
@@ -35,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Hello!",style: TextStyle(color: Colors.black),),
-                       Text("Zohaib ",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)
+                       Text(userName,style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)
                   
                     ],
                   ),
