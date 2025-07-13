@@ -34,7 +34,7 @@ class _BookingPageState extends State<BookingPage> {
       "date":"${today!.day}/${today!.month}/${today!.year}",
       "time":  currenttime!.format(context).toString()
     });
-    ToastError().showToast(msg: 'Your order added', color: Colors.red, textColor: Colors.white);
+    ToastError().showToast(msg: 'Your order added', color: Colors.green, textColor: Colors.white);
     }catch(e){
       ToastError().showToast(msg: 'Error${e.toString()}', color: Colors.red, textColor: Colors.white);
     }
@@ -54,8 +54,6 @@ loadUserData();
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          nameK != null ?
-          Text(nameK! , style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),): CircularProgressIndicator(),
           Text("Lets the \nJourney Begins!",
           style: TextStyle(
             color: Colors.white60,fontSize: 30,
