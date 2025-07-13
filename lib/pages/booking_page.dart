@@ -1,5 +1,8 @@
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/toast_error.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class BookingPage extends StatefulWidget {
  final String name;
@@ -19,6 +22,22 @@ class _BookingPageState extends State<BookingPage> {
     nameK = await SharedPreferece().getName();
     gmail = await SharedPreferece().getGmail();
     setState(() {}); 
+  }
+  sendOrder()async{
+    try{
+      String uid=randomAlphaNumeric(10);
+   await FirebaseFirestore.instance.collection("UserOrder").doc(uid).set({
+      "name":nameK,
+      "serviceImage":widget.image,
+      "gmail":gmail,
+      "services":widget.name,
+      "date":"${today!.day}/${today!.month}/${today!.year}",
+      "time":  currenttime!.format(context).toString()
+    });
+    ToastError().showToast(msg: 'Your order added', color: Colors.red, textColor: Colors.white);
+    }catch(e){
+      ToastError().showToast(msg: 'Error${e.toString()}', color: Colors.red, textColor: Colors.white);
+    }
   }
   @override
   void initState()  {
@@ -99,7 +118,7 @@ loadUserData();
                         Icon(Icons.calendar_month),
                         SizedBox(width: 5,),
                         Text(  today != null?
-                           "${today!.day}-${today!.month}-${today!.year}" : "1-1-2001"
+                           "${today!.day}/${today!.month}/${today!.year}" : "1-1-2001"
                           ,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),      
                       ],
                     ),
@@ -152,15 +171,17 @@ loadUserData();
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+            GestureDetector(
+              child: Container(
+                margin: EdgeInsets.only(top: 30),
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                ),
               ),
             )
 
