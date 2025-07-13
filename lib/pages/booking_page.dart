@@ -17,10 +17,10 @@ class _BookingPageState extends State<BookingPage> {
   DateTime? today;
   TimeOfDay? currenttime;
   String? nameK;
-  String? gmail;
+  String? gmal;
    Future<void> loadUserData() async {
     nameK = await SharedPreferece().getName();
-    gmail = await SharedPreferece().getGmail();
+    gmal = await SharedPreferece().getGmail();
     setState(() {}); 
   }
   sendOrder()async{
@@ -29,7 +29,7 @@ class _BookingPageState extends State<BookingPage> {
    await FirebaseFirestore.instance.collection("UserOrder").doc(uid).set({
       "name":nameK,
       "serviceImage":widget.image,
-      "gmail":gmail,
+      "gmail":gmal,
       "services":widget.name,
       "date":"${today!.day}/${today!.month}/${today!.year}",
       "time":  currenttime!.format(context).toString()
