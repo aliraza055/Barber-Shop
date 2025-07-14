@@ -1,5 +1,6 @@
 import 'package:barber_shop/model/services_model.dart';
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,11 @@ setState(() {
                     ],
                   ),
                 ),
-                Image.asset('assets/boy.jpg',height: 50,width: 50,)
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>AdminOrder()));
+                  },
+                  child: Image.asset('assets/boy.jpg',height: 50,width: 50,))
               ],
             ),
             SizedBox(height: 10,),

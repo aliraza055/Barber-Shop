@@ -173,7 +173,6 @@ loadUserData();
             GestureDetector(
               onTap: ()async{
             await sendOrder();
-          Navigator.push(context, MaterialPageRoute(builder: (_)=>AdminOrder()));
               },
               child: Container(
                 margin: EdgeInsets.only(top: 30),
