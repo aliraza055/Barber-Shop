@@ -21,7 +21,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
         };
     await sendData(uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()),(route)=>false);
       });
     }on FirebaseAuthException catch(e){
       if(e.code == 'weak-password') {
@@ -40,7 +40,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
     try{
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
      ToastError().showToast(msg: 'Login Successful!', color: Colors.green, textColor: Colors.white);
-             Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()),(route)=>false);
 
     });
   } on FirebaseAuthException catch (e){

@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -172,6 +173,7 @@ loadUserData();
             GestureDetector(
               onTap: ()async{
             await sendOrder();
+          Navigator.push(context, MaterialPageRoute(builder: (_)=>AdminOrder()));
               },
               child: Container(
                 margin: EdgeInsets.only(top: 30),

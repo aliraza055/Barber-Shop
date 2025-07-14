@@ -29,10 +29,9 @@ setState(() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body: Container(
-        margin: EdgeInsets.only(top: 10,left: 20,right: 20),
+      drawer: Drawer(),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20,right: 20,top: 50),
         child: Column(
            mainAxisAlignment: MainAxisAlignment.start,
            crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +75,6 @@ setState(() {
                   padding: EdgeInsets.only(top: 20,left: 10,right: 10),
                   margin: EdgeInsets.only(left: 10,right: 10),
                   height: 150,
-                            //   width: 150,
                   decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(12),
@@ -87,10 +85,7 @@ setState(() {
                       Image.asset(services[index].image,height: 70,width: 70,),
                                  SizedBox(height: 10,),
                  
-                 Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-  
-
-                 
+                 Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),              
                       
                     ],
                   )
