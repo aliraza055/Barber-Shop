@@ -1,5 +1,4 @@
 import 'package:barber_shop/model/shared_preferece.dart';
-import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,6 @@ class BookingPage extends StatefulWidget {
   @override
   State<BookingPage> createState() => _BookingPageState();
 }
-
 class _BookingPageState extends State<BookingPage> {
   DateTime? today;
   TimeOfDay? currenttime;
@@ -186,7 +184,6 @@ loadUserData();
                 ),
               ),
             )
-
         ],
       ),
      ),
