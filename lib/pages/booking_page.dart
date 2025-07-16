@@ -78,8 +78,8 @@ loadUserData();
       ),
     ),
   ),
-)
-,
+),
+
             SizedBox(height: 20,),         
             Image.asset('assets/discount.png',height: 100,width: double.infinity,fit: BoxFit.cover,),          
             GestureDetector(
@@ -158,12 +158,9 @@ loadUserData();
                         Icon(Icons.lock_clock),
                         SizedBox(width: 10),
                         Text( currenttime !=null ?
-                          currenttime!.format(context).toString() : '12:00 pm',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                        
+                          currenttime!.format(context).toString() : '12:00 pm',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)                       
                       ],
-                    ),
-                    
-              
+                    ),             
                   ],
                 ),
               ),
