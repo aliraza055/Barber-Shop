@@ -2,6 +2,7 @@ import 'package:barber_shop/model/services_model.dart';
 import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/booking_page.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -104,7 +105,13 @@ setState(() {
           ],
         ),
       ),
-     
+     bottomNavigationBar: CurvedNavigationBar(
+      items: [
+        Icon(Icons.home_outlined,size: 30,),
+        Icon(Icons.book_online),
+        Icon(Icons.man_2_outlined)
+      ]
+      ),
     );
   }
 }
