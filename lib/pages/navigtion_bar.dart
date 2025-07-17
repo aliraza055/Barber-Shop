@@ -10,29 +10,40 @@ class NavigtionBa extends StatefulWidget {
   @override
   State<NavigtionBa> createState() => _NavigtionBaState();
 }
-
 class _NavigtionBaState extends State<NavigtionBa> {
-  int _index=0;
-  final List<Widget> _page=[
-        HomePage(),
-        AdminOrder(),
-        SignIn()
+  int _index = 0;
+  final List<Widget> _page = [
+    HomePage(),
+    AdminOrder(),
+    SignIn(),
   ];
+
+  final items = <Widget>[
+    Icon(Icons.home_outlined, size: 30, color: Colors.white),
+    Icon(Icons.calendar_month_rounded, size: 30, color: Colors.white),
+    Icon(Icons.person_3_rounded, size: 30, color: Colors.white),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      extendBody: true, // for transparent navBar animation
       body: _page[_index],
       bottomNavigationBar: CurvedNavigationBar(
-        onTap: (value){
-           setState(() {
-             _index=value;
-           });
+        index: _index,
+        items: items,
+        height: 60,
+        color: Colors.black, // navigation bar color
+        buttonBackgroundColor: Colors.black, // selected button
+        backgroundColor: Colors.transparent,
+        animationDuration: Duration(milliseconds: 300),
+        animationCurve: Curves.easeInOut,
+        onTap: (value) {
+          setState(() {
+            _index = value;
+          });
         },
-        items: [
-         Icon(Icons.home_outlined,size: 30,),
-        Icon(Icons.book_online),
-        Icon(Icons.person_2_outlined)
-      ]),
+      ),
     );
   }
 }
