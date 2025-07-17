@@ -105,13 +105,6 @@ setState(() {
           ],
         ),
       ),
-     bottomNavigationBar: CurvedNavigationBar(
-      items: [
-        Icon(Icons.home_outlined,size: 30,),
-        Icon(Icons.book_online),
-        Icon(Icons.man_2_outlined)
-      ]
-      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/home_page.dart';
+import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +22,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
         };
     await sendData(uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);
-        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()),(route)=>false);
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>NavigtionBa()),(route)=>false);
       });
     }on FirebaseAuthException catch(e){
       if(e.code == 'weak-password') {
@@ -40,7 +41,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
     try{
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
      ToastError().showToast(msg: 'Login Successful!', color: Colors.green, textColor: Colors.white);
-             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>HomePage()),(route)=>false);
+             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>NavigtionBa()),(route)=>false);
 
     });
   } on FirebaseAuthException catch (e){
