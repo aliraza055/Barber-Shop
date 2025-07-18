@@ -50,7 +50,44 @@ setState(() {
                 ],
               ),
         ),
-        drawer: Drawer(),
+        drawer: Drawer(
+  child: ListView(
+    children: [
+      DrawerHeader(
+        decoration: BoxDecoration(color: Colors.black),
+        child: Text("Welcome, Ali", style: TextStyle(color: Colors.white)),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text("Home"),
+        onTap: () => Navigator.pushNamed(context, '/home'),
+      ),
+      ListTile(
+        leading: Icon(Icons.book_online),
+        title: Text("Book Appointment"),
+        onTap: () => Navigator.pushNamed(context, '/booking'),
+      ),
+      ListTile(
+        leading: Icon(Icons.location_on),
+        title: Text("Our Location"),
+        onTap: () => Navigator.pushNamed(context, '/location'),
+      ),
+      ListTile(
+        leading: Icon(Icons.schedule),
+        title: Text("My Appointments"),
+        onTap: () => Navigator.pushNamed(context, '/myappointments'),
+      ),
+      Divider(),
+      ListTile(
+        leading: Icon(Icons.logout),
+        title: Text("Logout"),
+        onTap: () {
+          // logout logic
+        },
+      ),
+    ],
+  ),
+),    
         body: Padding(
           padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
           child: Column(
