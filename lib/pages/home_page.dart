@@ -51,6 +51,7 @@ setState(() {
               ),
         ),
         drawer: SizedBox(
+          
           width: 250,
           child: Drawer(
             child: ListView(
