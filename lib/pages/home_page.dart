@@ -1,5 +1,6 @@
 import 'package:barber_shop/model/services_model.dart';
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/admin_login.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:barber_shop/pages/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -70,7 +71,7 @@ setState(() {
                 ListTile(
           leading: Icon(Icons.admin_panel_settings),
           title: Text("Admin"),
-          onTap: () => print("clicked"),
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>AdminLogin())),
                 ),
                 ListTile(
           leading: Icon(Icons.location_on),

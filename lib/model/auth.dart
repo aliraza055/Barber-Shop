@@ -40,6 +40,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
   Future<void> singIn(BuildContext context,String email,String password)async{
     try{
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+
      ToastError().showToast(msg: 'Login Successful!', color: Colors.green, textColor: Colors.white);
              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>NavigtionBa()),(route)=>false);
 

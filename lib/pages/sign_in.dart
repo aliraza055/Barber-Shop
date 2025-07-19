@@ -54,7 +54,7 @@ class _SignInState extends State<SignIn> {
                 TextFormField(
                   validator: (value) {
                     if(value==null || value.isEmpty){
-                     return "Enter your name";
+                     return "Enter your gmail";
                     }
                     return null;
                   },
@@ -76,13 +76,14 @@ class _SignInState extends State<SignIn> {
                     return null;
                   },
                   controller: _passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Enter your password",
-                    prefixIcon: Icon(Icons.man)
+                    prefixIcon: Icon(Icons.password)
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
                     if(_keyform.currentState!.validate()){
                       Auth().singIn(context,_gamilController.text, _passwordController.text);
                     }
@@ -103,13 +104,13 @@ class _SignInState extends State<SignIn> {
                 ),
                 SizedBox(height: 30,),
                 Row(
-                //  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text("Don't have an account?",textAlign:TextAlign.end,),
                     SizedBox(width: 10,),
                 GestureDetector(
                   onTap: (){
+
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
                   },
                   child: Text("Sign Up",
