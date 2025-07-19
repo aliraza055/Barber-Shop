@@ -1,6 +1,8 @@
 import 'package:barber_shop/model/services_model.dart';
 import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/booking_page.dart';
+import 'package:barber_shop/pages/sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,8 +86,10 @@ setState(() {
                 ListTile(
           leading: Icon(Icons.logout),
           title: Text("Logout"),
-          onTap: () {
-            // logout logic
+          onTap: () async{
+            await FirebaseAuth.instance.signOut().then((value){
+     Navigator.push(context, MaterialPageRoute(builder: (_)=> SignIn()));
+            });
           },
                 ),
               ],
