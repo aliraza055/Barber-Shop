@@ -19,9 +19,9 @@ class _NavigtionBaState extends State<NavigtionBa> {
   ];
 
  final items = <Widget>[
-  Icon(Icons.home_filled, size: 30, color: Colors.white),
-  Icon(Icons.calendar_month_rounded, size: 30, color: Colors.white),
-  Icon(Icons.person_3_rounded, size: 30, color: Colors.white),
+  Icon(Icons.home_filled, size: 30, color: Colors.black),
+  Icon(Icons.calendar_month_rounded, size: 30, color: Colors.black),
+  Icon(Icons.person_3_rounded, size: 30, color: Colors.black),
 ];
 
 

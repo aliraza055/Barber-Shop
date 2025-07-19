@@ -1,7 +1,6 @@
 import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -86,7 +85,8 @@ class _AdminLoginState extends State<AdminLogin> {
                 GestureDetector(
                   onTap: ()async{
                     if(_keyform.currentState!.validate()){
-                  
+                  login();
+                  print("yes");
                     }
                   },
                   child: Container(
@@ -117,7 +117,7 @@ class _AdminLoginState extends State<AdminLogin> {
   }
   login()async{
       await FirebaseFirestore.instance.collection("Admin").get().then((snapshot){
-        snapshot.docs.forEach((result){
+        for(var result in snapshot.docs){
           if(result.data()['id'] != _gamilController.text.trim()){
             ToastError().showToast(msg: "You have enter wrong user name", color: Colors.red, textColor: Colors.white);
           }
@@ -127,7 +127,9 @@ class _AdminLoginState extends State<AdminLogin> {
           }else{
             Navigator.push(context, MaterialPageRoute(builder: (_)=>AdminOrder()));
           }
-        });
-                    });
-  }
+        }
+        
+      }
+     );
+      }
 }
