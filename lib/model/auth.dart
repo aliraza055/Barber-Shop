@@ -1,5 +1,4 @@
 import 'package:barber_shop/model/shared_preferece.dart';
-import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
