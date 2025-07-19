@@ -68,8 +68,8 @@ setState(() {
           onTap: () => print("clicked"),
                 ),
                 ListTile(
-          leading: Icon(Icons.book_online),
-          title: Text("Book Appointment"),
+          leading: Icon(Icons.admin_panel_settings),
+          title: Text("Admin"),
           onTap: () => print("clicked"),
                 ),
                 ListTile(

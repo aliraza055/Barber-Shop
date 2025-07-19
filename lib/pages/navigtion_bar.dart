@@ -18,24 +18,24 @@ class _NavigtionBaState extends State<NavigtionBa> {
     SignIn(),
   ];
 
-  final items = <Widget>[
-    Icon(Icons.home_outlined, size: 30, color: Colors.black),
-    Icon(Icons.calendar_month_rounded, size: 30, color: Colors.black ),
-    Icon(Icons.person_3_rounded, size: 30, color: Colors.black),
-  ];
+ final items = <Widget>[
+  Icon(Icons.home_filled, size: 30, color: Colors.white),
+  Icon(Icons.calendar_month_rounded, size: 30, color: Colors.white),
+  Icon(Icons.person_3_rounded, size: 30, color: Colors.white),
+];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
- // for transparent navBar animation
       body: _page[_index],
       bottomNavigationBar: CurvedNavigationBar(
         index: _index,
         items: items,
         height: 60,
-        color: Colors.black, // navigation bar color
-        buttonBackgroundColor: Colors.black, // selected button
+        color: Colors.white,
+        buttonBackgroundColor: Colors.white, 
         backgroundColor: Colors.transparent,
         animationDuration: Duration(milliseconds: 300),
         animationCurve: Curves.easeInOut,
