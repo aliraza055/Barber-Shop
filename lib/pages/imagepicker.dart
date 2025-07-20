@@ -45,6 +45,7 @@ class _ImagepickerState extends State<Imagepicker> {
                     image=File(pickedImage.path);
                   });
             }
+            
                 
                 }),
                 SizedBox(height: 20,),
