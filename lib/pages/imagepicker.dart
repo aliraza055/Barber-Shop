@@ -66,7 +66,6 @@ if (response.statusCode == 200) {
   final responseBody = await response.stream.bytesToString();
 final decoded = jsonDecode(responseBody);
 final imageUrl = decoded["secure_url"];  
- 
 
   ToastError().showToast(msg: '✅ Upload successful: $responseBody',color: Colors.green,textColor: Colors.white);
 } else {
