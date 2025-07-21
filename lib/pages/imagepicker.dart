@@ -45,7 +45,7 @@ class _ImagepickerState extends State<Imagepicker> {
                     image=File(pickedImage.path);
                   });
             }
-            
+
                 
                 }),
                 SizedBox(height: 20,),
@@ -55,15 +55,17 @@ class _ImagepickerState extends State<Imagepicker> {
                   child: Text("upload image to cloudinary"),
                 ),
                 onPressed: ()async{
+
                   final url=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
                  final request=http.MultipartRequest("POST", url);
                  request.fields["upload_preset"]='upload_preset_file';
                  request.files.add(await http.MultipartFile.fromPath('file', image!.path));
                  final response = await request.send();
+                 
 
 if (response.statusCode == 200) {
   final responseBody = await response.stream.bytesToString();
-final decoded = json.decode(responseBody);
+final decoded = jsonDecode(responseBody);
 final imageUrl = decoded["secure_url"];  
  
 
