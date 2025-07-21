@@ -61,7 +61,6 @@ class _ImagepickerState extends State<Imagepicker> {
                  request.fields["upload_preset"]='upload_preset_file';
                  request.files.add(await http.MultipartFile.fromPath('file', image!.path));
                  final response = await request.send();              
-
 if (response.statusCode == 200) {
   final responseBody = await response.stream.bytesToString();
 final decoded = jsonDecode(responseBody);
