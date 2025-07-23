@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:barber_shop/model/auth.dart';
 import 'package:barber_shop/pages/toast_error.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:random_string/random_string.dart';
 
 class Upload extends StatefulWidget {
   const Upload({super.key});
@@ -67,9 +69,12 @@ return ;
     final decode=jsonDecode(resBody);
     final _image=decode['secure_url'];
     print('resBody=$resBody');
-    print("decode=$decode")
+    print("decode=$decode");
     print("image=$_image");
-    final uid=R
+    final uid=randomAlphaNumeric(10);
+    await FirebaseFirestore.instance.collection("UserImage").doc(uid).set({
+      "image":decode['secure_url']
+    });
   
     ToastError().showToast(msg: "uploaded", color: Colors.green, textColor: Colors.white);
        setState(() {
