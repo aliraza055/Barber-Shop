@@ -73,6 +73,7 @@ return ;
     print("image=$_image");
     final uid=randomAlphaNumeric(10);
     await FirebaseFirestore.instance.collection("UserImage").doc(uid).set({
+      "uid":uid,
       "image":decode['secure_url']
     });
   
