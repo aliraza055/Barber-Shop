@@ -69,6 +69,7 @@ return ;
     print('resBody=$resBody');
     print("decode=$decode")
     print("image=$_image");
+    final uid=R
   
     ToastError().showToast(msg: "uploaded", color: Colors.green, textColor: Colors.white);
        setState(() {
