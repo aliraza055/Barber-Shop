@@ -30,12 +30,12 @@ bool loading=false;
             FloatingActionButton(onPressed: (){
               selectImage();
             },
-            child: Text("select"),),
+            child:Text("select"),),
             SizedBox(height: 20,),
                FloatingActionButton(onPressed: (){
                 sendImage();
             },
-            child: loading ==true ? CircularProgressIndicator(): Text("select"),)
+            child:loading ==true ? CircularProgressIndicator(): Text("select"),)
           ],
         ),
       ),
@@ -47,7 +47,6 @@ final  slectedImage=await picker.pickImage(source: ImageSource.gallery);
 if(slectedImage != null){
   image=File(slectedImage.path);
   setState(() {
-    
   });
 }}
 Future<void> sendImage()async{
@@ -68,10 +67,13 @@ return ;
     final decode=jsonDecode(resBody);
     final _image=decode['secure_url'];
     print('resBody=$resBody');
-    print("decode=$decode");
+    print("decode=$decode")
     print("image=$_image");
   
     ToastError().showToast(msg: "uploaded", color: Colors.green, textColor: Colors.white);
+       setState(() {
+      loading=false;
+    });
   }else{
         ToastError().showToast(msg: '❌ Upload failed: ${respose.statusCode}',color: Colors.green,textColor: Colors.white);
 
