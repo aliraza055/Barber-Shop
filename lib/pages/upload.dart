@@ -19,6 +19,8 @@ class Upload extends StatefulWidget {
 class _UploadState extends State<Upload> {
 File? image;
 bool loading=false;
+//DocumentSnapshot snapshot=FirebaseFirestore.instance.collection("User")
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

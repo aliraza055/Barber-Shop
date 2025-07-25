@@ -1,4 +1,3 @@
-import 'package:barber_shop/pages/imagepicker.dart';
 import 'package:barber_shop/pages/upload.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
