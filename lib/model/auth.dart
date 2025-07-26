@@ -14,7 +14,8 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
 User? user=FirebaseAuth.instance.currentUser;
         Map<String,dynamic> userinfo={
           "Name":name,
-          "Gmail":email
+          "Gmail":email,
+          "image":''
         };
     await sendData(user!.uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);

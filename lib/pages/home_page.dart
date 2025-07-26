@@ -52,7 +52,6 @@ setState(() {
                   ),
                   GestureDetector(
                     onTap: (){
-                      print("The current user id=${user!.uid}");
                     },
                     child: CircleAvatar(
                     radius: 25,             
