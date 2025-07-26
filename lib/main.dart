@@ -1,3 +1,4 @@
+import 'package:barber_shop/pages/splash.dart';
 import 'package:barber_shop/pages/upload.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Upload()
+      home: Splash()
     );
   }
 }
