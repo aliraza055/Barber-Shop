@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+User? user=FirebaseAuth.instance.currentUser;
 
   String userName= " ";
   getName()async{
@@ -30,11 +31,6 @@ setState(() {
     super.initState();
     getName();
     services=ServicesModel.getServices();
-  }
-  Future <void> getResult()async{
-    QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("UserImage").get();
-    
-
   }
   @override
   Widget build(BuildContext context) {
@@ -54,9 +50,14 @@ setState(() {
                       ],
                     ),
                   ),
-                  CircleAvatar(
-                  radius: 25,             
-                    backgroundImage: AssetImage('assets/boy.jpg'))
+                  GestureDetector(
+                    onTap: (){
+                      print("The current user id=${user!.uid}");
+                    },
+                    child: CircleAvatar(
+                    radius: 25,             
+                      backgroundImage: AssetImage('assets/boy.jpg')),
+                  )
                 ],
               ),
         ),

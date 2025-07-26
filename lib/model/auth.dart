@@ -4,8 +4,6 @@ import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'package:random_string/random_string.dart';
 class Auth{
 Future<void> singUp(BuildContext context,String name,String email,String password)async{
     try{
@@ -13,13 +11,12 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
       email: email, password: password).then((value)async{
       await    SharedPreferece().sendName(name);
       await   SharedPreferece().sendGmail(email);
-        String uid=randomAlphaNumeric(10);
-
+User? user=FirebaseAuth.instance.currentUser;
         Map<String,dynamic> userinfo={
           "Name":name,
           "Gmail":email
         };
-    await sendData(uid, userinfo);
+    await sendData(user!.uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>NavigtionBa()),(route)=>false);
       });
