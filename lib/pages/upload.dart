@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:barber_shop/model/auth.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -19,8 +19,13 @@ class Upload extends StatefulWidget {
 class _UploadState extends State<Upload> {
 File? image;
 bool loading=false;
-//DocumentSnapshot snapshot=FirebaseFirestore.instance.collection("User")
+User? user=FirebaseAuth.instance.currentUser;
 
+Future getimage()async{
+  DocumentSnapshot snapshot=await FirebaseFirestore.instance.collection("UserImage").doc("").get();
+  //Map<String, dynamic> data=snapshot.do
+
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

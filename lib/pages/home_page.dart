@@ -3,6 +3,7 @@ import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/admin_login.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:barber_shop/pages/sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   String userName= " ";
   getName()async{
 userName= await SharedPreferece().getName();
@@ -28,6 +30,11 @@ setState(() {
     super.initState();
     getName();
     services=ServicesModel.getServices();
+  }
+  Future <void> getResult()async{
+    QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("UserImage").get();
+    
+
   }
   @override
   Widget build(BuildContext context) {
