@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:barber_shop/pages/toast_error.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -66,7 +65,7 @@ if (response.statusCode == 200) {
 final decoded = jsonDecode(responseBody);
 final imageUrl = decoded["secure_url"];  
 
-  ToastError().showToast(msg: '✅ Upload successful: $responseBody',color: Colors.green,textColor: Colors.white);
+  ToastError().showToast(msg: '✅ Upload successful: $imageUrl',color: Colors.green,textColor: Colors.white);
 } else {
     ToastError().showToast(msg: '❌ Upload failed: ${response.statusCode}',color: Colors.green,textColor: Colors.white);
 

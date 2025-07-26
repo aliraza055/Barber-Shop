@@ -29,6 +29,7 @@ class ImageUpload {
       final decode=jsonDecode(resBody);
       final imageUrl=decode['secure_url'];
       user!.updatePhotoURL(imageUrl);
+    await  user!.reload();
      await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
        'image':imageUrl
      });

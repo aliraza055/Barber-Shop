@@ -11,6 +11,8 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
 
 User? user=FirebaseAuth.instance.currentUser!;
         user.updateDisplayName(name);
+        await user.reload();
+
          Map<String,dynamic> userinfo={
           "Name":name,
           "Gmail":email,
