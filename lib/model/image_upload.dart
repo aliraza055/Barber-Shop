@@ -19,8 +19,8 @@ class ImageUpload {
 
   }
   Future<void> sendImage()async{
-    final uri=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
-    final request=http.MultipartRequest('POST', uri);
+                  final url=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
+    final request=http.MultipartRequest('POST', url);
     request.fields['upload_preset']='upload_preset_file';
     request.files.add(await http.MultipartFile.fromPath('file',myImage!.path));
   final respose=  await request.send();

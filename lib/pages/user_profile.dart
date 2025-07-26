@@ -48,7 +48,7 @@ class _UserProfileState extends State<UserProfile> {
             onPressed: ()async{
           final uri=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
           final request=http.MultipartRequest('POST', uri);
-          request.fields['upload_present']='upload_preset_file';
+          request.fields['upload_preset']='upload_preset_file';
           request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
       final resposne=  await request.send();
       if(resposne.statusCode==200){
@@ -61,6 +61,9 @@ class _UserProfileState extends State<UserProfile> {
         'image':imageurl
       });
           ToastError().showToast(msg: "Uploaded Successfully!", color: Colors.black, textColor: Colors.white);
+      }else{
+                  ToastError().showToast(msg: "${resposne.statusCode}", color: Colors.black, textColor: Colors.white);
+
       }
 
           }),
