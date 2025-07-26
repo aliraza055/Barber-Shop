@@ -1,6 +1,6 @@
 import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/home_page.dart';
-import 'package:barber_shop/pages/sign_in.dart';
+import 'package:barber_shop/pages/user_profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class _NavigtionBaState extends State<NavigtionBa> {
   final List<Widget> _page = [
     HomePage(),
     AdminOrder(),
-    SignIn(),
+    UserProfile(),
   ];
 
  final items = <Widget>[
@@ -23,8 +23,6 @@ class _NavigtionBaState extends State<NavigtionBa> {
   Icon(Icons.calendar_month_rounded, size: 30, color: Colors.black),
   Icon(Icons.person_3_rounded, size: 30, color: Colors.black),
 ];
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
