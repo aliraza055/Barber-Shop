@@ -1,9 +1,7 @@
 import 'package:barber_shop/model/services_model.dart';
-import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/admin_login.dart';
 import 'package:barber_shop/pages/booking_page.dart';
 import 'package:barber_shop/pages/sign_in.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,19 +15,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 User? user=FirebaseAuth.instance.currentUser;
 
-  String userName= " ";
-  getName()async{
-userName= await SharedPreferece().getName();
-setState(() {
-  
-});
-
-  }
   List<ServicesModel> services=[];
   @override
   void initState() {
     super.initState();
-    getName();
     services=ServicesModel.getServices();
   }
   @override
@@ -46,17 +35,14 @@ setState(() {
                         crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Hello!",style: TextStyle(color: Colors.black),),
-                         Text(userName,style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)            
+                         Text(user!.displayName ?? 'Ali Raza',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)            
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: (){
-                    },
-                    child: CircleAvatar(
-                    radius: 25,             
-                      backgroundImage: AssetImage('assets/boy.jpg')),
-                  )
+                  CircleAvatar(
+                  radius: 25,             
+                    backgroundImage: user!.photoURL != null ? NetworkImage(user!.photoURL!):
+                    AssetImage('assets/boy.jpg'))
                 ],
               ),
         ),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,9 +28,10 @@ class ImageUpload {
       final resBody=await respose.stream.bytesToString();
       final decode=jsonDecode(resBody);
       final imageUrl=decode['secure_url'];
-      await FirebaseFirestore.instance.collection("UserInfo").doc(user!.uid).update({
-        'image':imageUrl
-      });
+      user!.updatePhotoURL(imageUrl);
+     await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
+       'image':imageUrl
+     });
       // await FirebaseFirestore.instance.collection("UserImages").doc(user!.uid).set({
       //  "userimage":decode['secure_url']
       // });

@@ -1,4 +1,3 @@
-import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,15 +8,15 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
     try{
    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, password: password).then((value)async{
-      await    SharedPreferece().sendName(name);
-      await   SharedPreferece().sendGmail(email);
-User? user=FirebaseAuth.instance.currentUser;
-        Map<String,dynamic> userinfo={
+
+User? user=FirebaseAuth.instance.currentUser!;
+        user.updateDisplayName(name);
+         Map<String,dynamic> userinfo={
           "Name":name,
           "Gmail":email,
-          "image":''
-        };
-    await sendData(user!.uid, userinfo);
+         "image":''
+       };
+     await sendData(user.uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);
         Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>NavigtionBa()),(route)=>false);
       });
