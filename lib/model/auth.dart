@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class Auth{
-Future<void> singUp(BuildContext context,String name,String email,String password)async{
+Future<void> singUp(BuildContext context,String name,String email,String password,final contact)async{
     try{
    await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: email, password: password).then((value)async{
@@ -12,11 +12,11 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
 User? user=FirebaseAuth.instance.currentUser!;
         user.updateDisplayName(name);
         await user.reload();
-
          Map<String,dynamic> userinfo={
           "Name":name,
           "Gmail":email,
-         "image":''
+          "Contact":contact,
+          "image":''
        };
      await sendData(user.uid, userinfo);
         ToastError().showToast(msg: "Create account successfully!", color: Colors.green, textColor: Colors.white);

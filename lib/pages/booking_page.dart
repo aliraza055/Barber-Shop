@@ -1,6 +1,7 @@
 import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
 
@@ -13,6 +14,7 @@ class BookingPage extends StatefulWidget {
   State<BookingPage> createState() => _BookingPageState();
 }
 class _BookingPageState extends State<BookingPage> {
+  User? user=FirebaseAuth.instance.currentUser;
   DateTime? today;
   TimeOfDay? currenttime;
   String? nameK;
@@ -26,9 +28,10 @@ class _BookingPageState extends State<BookingPage> {
     try{
       String uid=randomAlphaNumeric(10);
    await FirebaseFirestore.instance.collection("UserOrder").doc(uid).set({
-      "name":nameK,
+      "name":user!.displayName,
       "serviceImage":widget.image,
-      "gmail":gmal,
+      "userImage":user!.photoURL ?? " ",
+      "gmail":user!.email,
       "services":widget.name,
       "date":"${today!.day}/${today!.month}/${today!.year}",
       "time":  currenttime!.format(context).toString()
