@@ -36,8 +36,8 @@ class _SignUpState extends State<SignUp> {
           child: Text("Create Your \nAccount!",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         Container(
-          padding: EdgeInsets.only(left: 24,top: 40,right: 24),
-          margin: EdgeInsets.only(top: 200),
+          padding: EdgeInsets.only(left: 24,top: 20,right: 24),
+          margin: EdgeInsets.only(top: 170),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(60),topRight: Radius.circular(60))
@@ -80,7 +80,26 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                               SizedBox(height: 20,),
-            
+                               Text("Contact ",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                SizedBox(height: 10,),
+                TextFormField(
+                  controller: _passwordController,
+                                    keyboardType: TextInputType.phone,
+
+                  validator: (value) {
+                    if(value==null || value.isEmpty){
+                      return "This field cannot be empty!";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Enter your contact",
+
+                    prefixIcon: Icon(Icons.call)
+                  ),
+                ),
+                                          SizedBox(height: 20,),
+
                 Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
                 TextFormField(
