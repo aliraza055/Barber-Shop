@@ -16,6 +16,7 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  bool loading=false;
       File? _image;
       User? user=FirebaseAuth.instance.currentUser;
   @override
@@ -44,8 +45,11 @@ class _UserProfileState extends State<UserProfile> {
           }),
           SizedBox(height: 20,),
         FloatingActionButton(
-            child: Text("upload"),
+            child:loading ? CircularProgressIndicator(): Text("upload"),
             onPressed: ()async{
+              setState(() {
+                loading=true;
+              });
           final uri=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
           final request=http.MultipartRequest('POST', uri);
           request.fields['upload_preset']='upload_preset_file';
@@ -60,7 +64,16 @@ class _UserProfileState extends State<UserProfile> {
       await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
         'image':imageurl
       });
+   final snapshot=  await FirebaseFirestore.instance.collection("UserOrder").where('userUid', isEqualTo: user!.uid).get();
+   if(snapshot.docs.isNotEmpty){
+     for(var doc in snapshot.docs){
+      await doc.reference.update({
+        'userPhoto':imageurl
+      });
+     }
+   }
           ToastError().showToast(msg: "Uploaded Successfully!", color: Colors.black, textColor: Colors.white);
+          
       }else{
                   ToastError().showToast(msg: "${resposne.statusCode}", color: Colors.black, textColor: Colors.white);
 

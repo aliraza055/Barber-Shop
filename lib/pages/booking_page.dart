@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
-
 class BookingPage extends StatefulWidget {
  final String name;
  final String image;
@@ -19,18 +18,16 @@ class _BookingPageState extends State<BookingPage> {
   TimeOfDay? currenttime;
   String? nameK;
   String? gmal;
-   Future<void> loadUserData() async {
-    nameK = await SharedPreferece().getName();
-    gmal = await SharedPreferece().getGmail();
-    setState(() {}); 
-  }
+  
   sendOrder()async{
     try{
       String uid=randomAlphaNumeric(10);
    await FirebaseFirestore.instance.collection("UserOrder").doc(uid).set({
       "name":user!.displayName,
       "serviceImage":widget.image,
-      "userImage":user!.photoURL ?? " ",
+      "userUid":user!.uid,
+      "userPhoto":user!.photoURL ?? ' ',
+      "userContact": await SharedPreferece().getPhoto(),
       "gmail":user!.email,
       "services":widget.name,
       "date":"${today!.day}/${today!.month}/${today!.year}",
@@ -42,10 +39,7 @@ class _BookingPageState extends State<BookingPage> {
     }
   }
   @override
-  void initState()  {
-loadUserData();
-    super.initState();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

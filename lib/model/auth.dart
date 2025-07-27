@@ -1,3 +1,4 @@
+import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +12,7 @@ Future<void> singUp(BuildContext context,String name,String email,String passwor
 
 User? user=FirebaseAuth.instance.currentUser!;
         user.updateDisplayName(name);
+        await SharedPreferece().sendContact(contact);
         await user.reload();
          Map<String,dynamic> userinfo={
           "Name":name,

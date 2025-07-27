@@ -65,7 +65,10 @@ Widget build(BuildContext context) {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Image.asset(items[index]['serviceImage'], width: 60, height: 60),
+                                      CircleAvatar(                                      
+                                        backgroundImage:items[index]['userPhoto'] != null&& items[index]['userPhoto'].toString().isNotEmpty ?
+                                        NetworkImage(items[index]['userPhoto']) as ImageProvider:
+                                         AssetImage(items[index]['serviceImage']  )as ImageProvider,),
                                       SizedBox(height: 8),
                                       Text(
                                        items[index]['services'],

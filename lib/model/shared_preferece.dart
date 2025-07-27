@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferece {
   final  String nameKey="NAME";
     final  String gmailKey="Gmail";
+        final  String contactKey="CONTACT";
+
 
   Future sendName(String name)async{
   SharedPreferences pref=await SharedPreferences.getInstance();
@@ -20,5 +22,14 @@ class SharedPreferece {
     SharedPreferences pref=await SharedPreferences.getInstance();
    return pref.get(gmailKey);
   }
+  Future sendContact(String contact)async{
+   SharedPreferences pref=await SharedPreferences.getInstance();
+return pref.setString(contactKey, contact);
+
+  }
+Future getPhoto()async{
+      SharedPreferences pref=await SharedPreferences.getInstance();
+return pref.get(contactKey);
+}
 
 }
