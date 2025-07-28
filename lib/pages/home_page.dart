@@ -44,6 +44,7 @@ User? user=FirebaseAuth.instance.currentUser;
                     backgroundImage: user!.photoURL != null ? NetworkImage(user!.photoURL!):
                     AssetImage('assets/download.png'))
                 ],
+                
               ),
         ),
         drawer: SizedBox(
