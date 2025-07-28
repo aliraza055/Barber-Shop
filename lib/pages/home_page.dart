@@ -38,8 +38,7 @@ User? user=FirebaseAuth.instance.currentUser;
                          Text(user!.displayName ?? 'Ali Raza',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),)            
                       ],
                     ),
-                  ),
-                  
+                  ),          
                   CircleAvatar(
                   radius: 25,             
                     backgroundImage: user!.photoURL != null ? NetworkImage(user!.photoURL!):
