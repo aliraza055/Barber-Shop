@@ -32,32 +32,47 @@ class _UpdateProfileState extends State<UpdateProfile> {
                  CircleAvatar(
               radius: 60,
               
-              backgroundImage: AssetImage('assets/download.png'),
+              backgroundImage:_image == null ? user!.photoURL == null ?
+               AssetImage('assets/download.png'): NetworkImage(user!.photoURL!) : FileImage(_image!),
                  ),
                Positioned(
-               // top: 0,
-                bottom: 0,
+                bottom: -1,
                 right: 4,
-                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle
-                  ),
-                  padding: EdgeInsets.all(6),
-                  child:Icon(Icons.edit) ,
-                              ),
+                 child: GestureDetector(
+                  onTap: ()async{
+                  final selectImage=await ImagePicker().pickImage(source: ImageSource.gallery);
+                  if(selectImage != null){
+                    setState(() {
+                      _image=File(selectImage.path);
+                    });
+
+                  }
+                  },
+                   child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      shape: BoxShape.circle
+                    ),
+                    padding: EdgeInsets.all(6),
+                    child:Icon(Icons.edit) ,
+                                ),
+                 ),
                ),
 
               ],
             ),
-            
-            _image == null ? Text("No image selected!") : CircleAvatar(
-              radius: 60,
-              backgroundImage: FileImage(_image!),
-              
-             ),
-                      SizedBox(height: 20,),
+                           SizedBox(height: 30,),
+            ElevatedButton(onPressed: (){
 
+            }, child: Text("Upagate"))
+
+          ],
+        ),
+      ),
+    );
+  }
+  void fun(){
+    
           FloatingActionButton(
             child: Text("get"),
             onPressed: ()async{
@@ -70,8 +85,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
           }
         
-          }),
-          SizedBox(height: 20,),
+          });
+          SizedBox(height: 20,);
         FloatingActionButton(
             child:loading ? CircularProgressIndicator(): Text("upload"),
             onPressed: ()async{
@@ -107,10 +122,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
       }
 
-          }),
-          ],
-        ),
-      ),
-    );
+          });
   }
 }

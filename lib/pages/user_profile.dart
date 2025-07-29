@@ -1,5 +1,7 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,6 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  File? _image;
   User? user = FirebaseAuth.instance.currentUser;
   String? phoneNo;
  getPhone()async{
@@ -20,6 +21,13 @@ class _UserProfileState extends State<UserProfile> {
         
       });
  }
+
+ @override
+ void initState() {
+    super.initState();
+  
+    getPhone();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,102 +41,43 @@ class _UserProfileState extends State<UserProfile> {
           child: Column(
             children: [
               // Profile Picture with Edit Button
-              Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 60,
-                    backgroundImage: AssetImage('assets/download.png'),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 4,
-                    child: GestureDetector(
-                      onTap: () {
-                        // change image function
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          shape: BoxShape.circle,
-                        ),
-                        padding: EdgeInsets.all(6),
-                        child: Icon(
-                          Icons.edit,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: user!.photoURL!= null ? NetworkImage(user!.photoURL!):
+                 AssetImage('assets/download.png'),
               ),
+             
               SizedBox(height: 20),
 
               // Profile Info Card
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      _buildProfileRow(Icons.person, "Name",'${user!.displayName}'),
-                      Divider(),
-                      _buildProfileRow(
-                          Icons.email, "Email", user?.email ?? "example@gmail.com"),
-                      Divider(),
-                      _buildProfileRow(Icons.phone, "Contact", "+92 ${phoneNo}"),
-                    ],
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    _buildProfileRow(Icons.person, "Name",'${user!.displayName}'),
+                SizedBox(height: 20,),
+                    Divider(),
+                    _buildProfileRow(
+                        Icons.email, "Email" ,' ${ user?.email}' ),
+                                        SizedBox(height: 20,),
+
+                    Divider(),
+                    _buildProfileRow(Icons.phone, "Contact", "+92 ${phoneNo}"),
+                                    SizedBox(height: 20,),
+
+                  ],
                 ),
               ),
 
               SizedBox(height: 30),
-
-              // Edit Profile Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    padding: EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: Icon(Icons.edit, color: Colors.black),
-                  label: Text(
-                    "Edit Profile",
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                  onPressed: () {
-                    // Edit profile code
-                  },
-                ),
-              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdateProfile()));
+                },
+                child: _button(color: Colors.amber, hText: 'Edit Profile',)),
               SizedBox(height: 12),
+             _button(color: Colors.red, hText: 'logout',),
 
-              // Logout Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    padding: EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: Icon(Icons.logout, color: Colors.white),
-                  label: Text(
-                    "Logout",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  onPressed: () {
-                    // Logout code
-                  },
-                ),
-              ),
             ],
           ),
         ),
@@ -149,9 +98,21 @@ class _UserProfileState extends State<UserProfile> {
         ),
         Text(
           value,
-          style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+          style: TextStyle(fontSize: 16, color: Colors.grey[700],),
         ),
       ],
+    );
+  }
+  Widget _button({required Color color,required String hText}){
+    return Container(
+      height: 60,
+      width: MediaQuery.of(context).size.width/2,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12)
+
+      ),
+      child: Center(child: Text(hText,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),),
     );
   }
 }
