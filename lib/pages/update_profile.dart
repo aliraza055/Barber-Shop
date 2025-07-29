@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/home_page.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,8 +12,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class UpdateProfile extends StatefulWidget {
-String contact;
-   UpdateProfile({super.key,required this.contact});
+final contact;
+ const  UpdateProfile({super.key,required this.contact});
 
   @override
   State<UpdateProfile> createState() => _UpdateProfileState();
@@ -26,30 +27,60 @@ class _UpdateProfileState extends State<UpdateProfile> {
   TextEditingController? gmailContr;
     TextEditingController? contactContr;
 
- Future uploadImage()async{
-  final uri=Uri.parse('uri');
-  final request=http.MultipartRequest('POST', uri);
-  request.fields['upload_preset']= 'upload_preset_file';
-  request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
- final res= await request.send();
- if(res.statusCode==200){
-  final resBody=await res.stream.bytesToString();
-  final decoded=jsonDecode(resBody);
-  final image=decoded['secure_url'];
- await user!.updatePhotoURL(image);
-   user!.updateDisplayName(nameContr!.text);
-               await SharedPreferece().sendContact(contactContr!.text);  
-               FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
-                'Name':nameContr!.text,
-                 'Contact':contactContr!.text,
-                 'image':_image
-               });
-    ToastError().showToast(msg: "Update Successfully!", color: Colors.green, textColor: Colors.white);
- }else{
-      ToastError().showToast(msg: "Error:${res.statusCode}", color: Colors.green, textColor: Colors.white);
 
- }
- }
+ Future updateProfile() async {
+  if (_image != null) {
+    // Image selected hai → Upload to Cloudinary
+    final uri = Uri.parse('uri');
+    final request = http.MultipartRequest('POST', uri);
+    request.fields['upload_preset'] = 'upload_preset_file';
+    request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
+
+    final res = await request.send();
+    if (res.statusCode == 200) {
+      final resBody = await res.stream.bytesToString();
+      final decoded = jsonDecode(resBody);
+      final image = decoded['secure_url'];
+
+      await _updateFirebase(image);
+       ToastError().showToast(
+          msg: "Update Successfully!",
+          color: Colors.green,
+          textColor: Colors.white);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomePage()));
+    } else {
+      ToastError().showToast(
+          msg: "Error:${res.statusCode}",
+          color: Colors.red,
+          textColor: Colors.white);
+    }
+  } else {
+    // Image nahi change ki → Sirf name/contact update
+    await _updateFirebase(user!.photoURL);
+    ToastError().showToast(
+          msg: "Update Successfully!",
+          color: Colors.green,
+          textColor: Colors.white);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomePage()));
+
+  }
+}
+
+Future _updateFirebase(String? imageUrl) async {
+  await user!.updatePhotoURL(imageUrl);
+  await user!.updateDisplayName(nameContr!.text);
+  await user!.reload();
+
+  await SharedPreferece().sendContact(contactContr!.text);
+
+  await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
+    'Name': nameContr!.text,
+    'Contact': contactContr!.text,
+    'image': imageUrl ?? '',
+  });
+
+}
+
 
       @override
   void initState() {
@@ -122,7 +153,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
         
               ElevatedButton(onPressed: ()async{
                 if(contactContr!.text.isNotEmpty && gmailContr!.text.isNotEmpty){
-                uploadImage();
+                updateProfile();
               
                 }
              
@@ -134,58 +165,5 @@ class _UpdateProfileState extends State<UpdateProfile> {
         ),
       ),
     );
-  }
-  void fun(){
-    
-          FloatingActionButton(
-            child: Text("get"),
-            onPressed: ()async{
-          final currentImage=await ImagePicker().pickImage(source: ImageSource.gallery);
-          if(currentImage != null){
-            _image=File(currentImage.path);
-            setState(() {
-              
-            });
-
-          }
-        
-          });
-          SizedBox(height: 20,);
-        FloatingActionButton(
-            child:loading ? CircularProgressIndicator(): Text("upload"),
-            onPressed: ()async{
-              setState(() {
-                loading=true;
-              });
-          final uri=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
-          final request=http.MultipartRequest('POST', uri);
-          request.fields['upload_preset']='upload_preset_file';
-          request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
-      final resposne=  await request.send();
-      if(resposne.statusCode==200){
-        final resBody=await resposne.stream.bytesToString();
-        final decoede=jsonDecode(resBody);
-        final imageurl=decoede['secure_url'];
-        user!.updatePhotoURL(imageurl);
-        await user!.reload();
-      await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
-        'image':imageurl
-      });
-   final snapshot=  await FirebaseFirestore.instance.collection("UserOrder").where('userUid', isEqualTo: user!.uid).get();
-   if(snapshot.docs.isNotEmpty){
-     for(var doc in snapshot.docs){
-      await doc.reference.update({
-        'userPhoto':imageurl
-      });
-     }
-   }
-          ToastError().showToast(msg: "Uploaded Successfully!", color: Colors.black, textColor: Colors.white);
-          
-      }else{
-                  ToastError().showToast(msg: "${resposne.statusCode}", color: Colors.black, textColor: Colors.white);
-
-      }
-
-          });
   }
 }

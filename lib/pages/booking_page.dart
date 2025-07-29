@@ -16,7 +16,7 @@ class _BookingPageState extends State<BookingPage> {
   User? user=FirebaseAuth.instance.currentUser;
   DateTime? today;
   TimeOfDay? currenttime;
-  String? nameK;
+   String? nameK;
   String? gmal;
   
   sendOrder()async{
