@@ -71,7 +71,7 @@ class _UserProfileState extends State<UserProfile> {
               SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdateProfile()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdateProfile(contact: phoneNo! ?? '',)));
                 },
                 child: _button(color: Colors.amber, hText: 'Edit Profile',)),
               SizedBox(height: 12),
