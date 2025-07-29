@@ -27,7 +27,7 @@ class SharedPreferece {
 return pref.setString(contactKey, contact);
 
   }
-Future getPhoto()async{
+Future getContact()async{
       SharedPreferences pref=await SharedPreferences.getInstance();
 return pref.get(contactKey);
 }

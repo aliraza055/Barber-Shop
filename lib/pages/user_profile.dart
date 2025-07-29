@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
-
-import 'package:barber_shop/pages/toast_error.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -16,73 +11,147 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
-  bool loading=false;
-      File? _image;
-      User? user=FirebaseAuth.instance.currentUser;
+  File? _image;
+  User? user = FirebaseAuth.instance.currentUser;
+  String? phoneNo;
+ getPhone()async{
+      phoneNo=await SharedPreferece().getContact();
+      setState(() {
+        
+      });
+ }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _image == null ? Text("No image selected!") : Image.file(_image!,height: 200,width: 200,),
-                      SizedBox(height: 20,),
+      appBar: AppBar(
+        title: Text("My Profile"),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              // Profile Picture with Edit Button
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: AssetImage('assets/download.png'),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 4,
+                    child: GestureDetector(
+                      onTap: () {
+                        // change image function
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          shape: BoxShape.circle,
+                        ),
+                        padding: EdgeInsets.all(6),
+                        child: Icon(
+                          Icons.edit,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
 
-          FloatingActionButton(
-            child: Text("get"),
-            onPressed: ()async{
-          final currentImage=await ImagePicker().pickImage(source: ImageSource.gallery);
-          if(currentImage != null){
-            _image=File(currentImage.path);
-            setState(() {
-              
-            });
+              // Profile Info Card
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      _buildProfileRow(Icons.person, "Name",'${user!.displayName}'),
+                      Divider(),
+                      _buildProfileRow(
+                          Icons.email, "Email", user?.email ?? "example@gmail.com"),
+                      Divider(),
+                      _buildProfileRow(Icons.phone, "Contact", "+92 ${phoneNo}"),
+                    ],
+                  ),
+                ),
+              ),
 
-          }
-        
-          }),
-          SizedBox(height: 20,),
-        FloatingActionButton(
-            child:loading ? CircularProgressIndicator(): Text("upload"),
-            onPressed: ()async{
-              setState(() {
-                loading=true;
-              });
-          final uri=Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
-          final request=http.MultipartRequest('POST', uri);
-          request.fields['upload_preset']='upload_preset_file';
-          request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
-      final resposne=  await request.send();
-      if(resposne.statusCode==200){
-        final resBody=await resposne.stream.bytesToString();
-        final decoede=jsonDecode(resBody);
-        final imageurl=decoede['secure_url'];
-        user!.updatePhotoURL(imageurl);
-        await user!.reload();
-      await FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
-        'image':imageurl
-      });
-   final snapshot=  await FirebaseFirestore.instance.collection("UserOrder").where('userUid', isEqualTo: user!.uid).get();
-   if(snapshot.docs.isNotEmpty){
-     for(var doc in snapshot.docs){
-      await doc.reference.update({
-        'userPhoto':imageurl
-      });
-     }
-   }
-          ToastError().showToast(msg: "Uploaded Successfully!", color: Colors.black, textColor: Colors.white);
-          
-      }else{
-                  ToastError().showToast(msg: "${resposne.statusCode}", color: Colors.black, textColor: Colors.white);
+              SizedBox(height: 30),
 
-      }
+              // Edit Profile Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  icon: Icon(Icons.edit, color: Colors.black),
+                  label: Text(
+                    "Edit Profile",
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  onPressed: () {
+                    // Edit profile code
+                  },
+                ),
+              ),
+              SizedBox(height: 12),
 
-          }),
-          ],
+              // Logout Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  icon: Icon(Icons.logout, color: Colors.white),
+                  label: Text(
+                    "Logout",
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  onPressed: () {
+                    // Logout code
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildProfileRow(IconData icon, String title, String value) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.amber),
+        SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+        ),
+      ],
     );
   }
 }

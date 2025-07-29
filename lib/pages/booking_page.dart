@@ -27,7 +27,7 @@ class _BookingPageState extends State<BookingPage> {
       "serviceImage":widget.image,
       "userUid":user!.uid,
       "userPhoto":user!.photoURL ?? ' ',
-      "userContact": await SharedPreferece().getPhoto(),
+      "userContact": await SharedPreferece().getContact(),
       "gmail":user!.email,
       "services":widget.name,
       "date":"${today!.day}/${today!.month}/${today!.year}",
