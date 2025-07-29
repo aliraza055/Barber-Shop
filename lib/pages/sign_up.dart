@@ -88,6 +88,7 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: 10,),
                   IntlPhoneField(
                     controller: _contactController,
+                    initialCountryCode: 'PK',
                     decoration: InputDecoration(
           prefixIcon: Icon(Icons.call)
                     ),

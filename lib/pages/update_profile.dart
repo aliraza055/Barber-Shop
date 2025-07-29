@@ -23,7 +23,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
       File? _image;
       User? user=FirebaseAuth.instance.currentUser;
   TextEditingController? nameContr;
-  //TextEditingController gmailContr=TextEditingController(user!.email!)
   TextEditingController? gmailContr;
     TextEditingController? contactContr;
 
@@ -38,6 +37,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
   final decoded=jsonDecode(resBody);
   final image=decoded['secure_url'];
  await user!.updatePhotoURL(image);
+   user!.updateDisplayName(nameContr!.text);
+               await SharedPreferece().sendContact(contactContr!.text);  
+               FirebaseFirestore.instance.collection("Users").doc(user!.uid).update({
+                'Name':nameContr!.text,
+                 'Contact':contactContr!.text,
+                 'image':_image
+               });
+    ToastError().showToast(msg: "Update Successfully!", color: Colors.green, textColor: Colors.white);
+ }else{
+      ToastError().showToast(msg: "Error:${res.statusCode}", color: Colors.green, textColor: Colors.white);
+
  }
  }
 
@@ -100,6 +110,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                              SizedBox(height: 30,),
                              TextField(
                            controller: gmailContr ,
+                           readOnly: true,
                              ),
                              SizedBox(height: 30,),
                              IntlPhoneField(
@@ -110,10 +121,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 SizedBox(height: 30,),
         
               ElevatedButton(onPressed: ()async{
-                if(nameContr.text.toString() && )
-              uploadImage();
-              user!.updateDisplayName(nameContr!.text);
-         await SharedPreferece().sendContact(contactContr!.text);
+                if(contactContr!.text.isNotEmpty && gmailContr!.text.isNotEmpty){
+                uploadImage();
+              
+                }
+             
         
               }, child: Text("Upagate"))
         
