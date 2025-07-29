@@ -1,5 +1,4 @@
-import 'dart:ffi';
-import 'dart:io';
+
 import 'package:barber_shop/model/shared_preferece.dart';
 import 'package:barber_shop/pages/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
