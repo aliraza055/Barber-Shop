@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:barber_shop/model/shared_preferece.dart';
-import 'package:barber_shop/pages/home_page.dart';
+import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,8 +30,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
  Future updateProfile() async {
   if (_image != null) {
-    // Image selected hai → Upload to Cloudinary
-    final uri = Uri.parse('uri');
+    final uri = Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
     final request = http.MultipartRequest('POST', uri);
     request.fields['upload_preset'] = 'upload_preset_file';
     request.files.add(await http.MultipartFile.fromPath('file', _image!.path));
@@ -47,7 +46,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
           msg: "Update Successfully!",
           color: Colors.green,
           textColor: Colors.white);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomePage()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavigtionBa()));
     } else {
       ToastError().showToast(
           msg: "Error:${res.statusCode}",
@@ -61,7 +60,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
           msg: "Update Successfully!",
           color: Colors.green,
           textColor: Colors.white);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomePage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>
+                    NavigtionBa()));
 
   }
 }
@@ -78,6 +78,17 @@ Future _updateFirebase(String? imageUrl) async {
     'Contact': contactContr!.text,
     'image': imageUrl ?? '',
   });
+ QuerySnapshot snapshot= await FirebaseFirestore.instance.collection("UserOder").where('userUid', isEqualTo:user!.uid ).get();
+ if(snapshot.docs.isNotEmpty){
+  for(var doc in snapshot.docs){
+    doc.reference.update({
+      'userPhoto':imageUrl ?? " ",
+      "name": nameContr!.text,
+      'userContact':contactContr!.text
+    });
+  }
+
+ }
 
 }
 
