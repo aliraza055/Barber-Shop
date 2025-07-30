@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/shared_preferece.dart';
+import 'package:barber_shop/pages/navigtion_bar.dart';
 import 'package:barber_shop/pages/toast_error.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,7 @@ class _BookingPageState extends State<BookingPage> {
   TimeOfDay? currenttime;
    String? nameK;
   String? gmal;
+  bool loading=false;
   
   sendOrder()async{
     try{
@@ -34,6 +36,7 @@ class _BookingPageState extends State<BookingPage> {
       "time":  currenttime!.format(context).toString()
     });
     ToastError().showToast(msg: 'Your order added', color: Colors.green, textColor: Colors.white);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavigtionBa()));
     }catch(e){
       ToastError().showToast(msg: 'Error${e.toString()}', color: Colors.red, textColor: Colors.white);
     }
@@ -164,6 +167,9 @@ class _BookingPageState extends State<BookingPage> {
             ),
             GestureDetector(
               onTap: ()async{
+                setState(() {
+                  loading=true;
+                });
             await sendOrder();
               },
               child: Container(
@@ -174,7 +180,7 @@ class _BookingPageState extends State<BookingPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
-                  child: Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                  child:loading ? CircularProgressIndicator() : Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
                 ),
               ),
             )

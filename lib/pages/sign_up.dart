@@ -11,6 +11,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  bool loading=false;
   final _formKey=GlobalKey<FormState>();
   final _nameController=TextEditingController();
     final _gmailController=TextEditingController();
@@ -112,6 +113,9 @@ class _SignUpState extends State<SignUp> {
                   GestureDetector(
                     onTap: (){
                       if(_formKey.currentState!.validate()){
+                        setState(() {
+                          loading=true;
+                        });
                       Auth().singUp(context,_nameController.text, _gmailController.text, _passwordController.text,_contactController.text);
                       }
                     },
@@ -126,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                           Colors.black87
                         ])
                       ),
-                      child: Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                      child:loading ? CircularProgressIndicator() :Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
                     ),
                   ),
                   SizedBox(height: 30,),

@@ -29,6 +29,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
 
  Future updateProfile() async {
+  setState(() {
+    loading=true;
+  });
   if (_image != null) {
     final uri = Uri.parse('https://api.cloudinary.com/v1_1/dhob4di7g/image/upload');
     final request = http.MultipartRequest('POST', uri);
@@ -169,7 +172,7 @@ Future _updateFirebase(String? imageUrl) async {
                 }
              
         
-              }, child: Text("Upagate"))
+              }, child:loading ? CircularProgressIndicator() : Text("Upagate"))
         
             ],
           ),
