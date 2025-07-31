@@ -103,127 +103,161 @@ Future _updateFirebase(String? imageUrl) async {
     contactContr=TextEditingController(text: widget.contact);
     super.initState();
   }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-                  color: Colors.black12,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color(0xFFF5F5F5), // same as HomePage
+    body: SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              "Update Profile",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87, // matched to HomePage style
+              ),
+            ),
+            const SizedBox(height: 30),
 
-        child: Container(
-          margin: EdgeInsets.only(left: 20,right: 20,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(child: Text("Update Profile",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)),
-              SizedBox(height: 30,),
-              Center(
-                child: Stack(
-                  children: [
-                     CircleAvatar(
-                  radius: 60,
-                  
-                  backgroundImage:_image == null ? user!.photoURL == null ?
-                   AssetImage('assets/download.png'): NetworkImage(user!.photoURL!) : FileImage(_image!),
-                     ),
-                   Positioned(
-                    bottom: -1,
-                    right: 4,
-                     child: GestureDetector(
-                      onTap: ()async{
-                      final selectImage=await ImagePicker().pickImage(source: ImageSource.gallery);
-                      if(selectImage != null){
+            // Avatar with camera icon
+            Stack(
+              children: [
+                CircleAvatar(
+                  radius: 65,
+                  backgroundColor: Colors.grey.shade300,
+                  backgroundImage: _image == null
+                      ? (user!.photoURL == null
+                          ? const AssetImage('assets/download.png')
+                          : NetworkImage(user!.photoURL!)) as ImageProvider
+                      : FileImage(_image!),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 4,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (picked != null) {
                         setState(() {
-                          _image=File(selectImage.path);
+                          _image = File(picked.path);
                         });
-                      
                       }
-                      },
-                       child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.amber,
-                          shape: BoxShape.circle
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [Colors.deepPurple, Colors.indigo], // HomePage gradient
                         ),
-                        padding: EdgeInsets.all(6),
-                        child:Icon(Icons.add) ,
-                                    ),
-                     ),
-                   ),
-                      
+                      ),
+                      child: const Icon(Icons.camera_alt_rounded, color: Colors.white),
+                    ),
+                  ),
+                )
+              ],
+            ),
+
+            const SizedBox(height: 30),
+
+            // Name field
+            Align(alignment: Alignment.centerLeft, child: Text("Name", style: labelStyle())),
+            const SizedBox(height: 8),
+            textInput(nameContr!, "Enter name"),
+
+            const SizedBox(height: 20),
+
+            // Email field
+            Align(alignment: Alignment.centerLeft, child: Text("Email", style: labelStyle())),
+            const SizedBox(height: 8),
+            textInput(gmailContr!, "Email", readOnly: true),
+
+            const SizedBox(height: 20),
+
+            // Contact field
+            Align(alignment: Alignment.centerLeft, child: Text("Contact", style: labelStyle())),
+            const SizedBox(height: 8),
+            IntlPhoneField(
+              controller: contactContr,
+              initialCountryCode: 'PK',
+              decoration: inputDecoration("Enter contact number"),
+              style: const TextStyle(fontSize: 16),
+            ),
+
+            const SizedBox(height: 40),
+
+            // Update button with gradient
+            GestureDetector(
+              onTap: () async {
+                if (contactContr!.text.isNotEmpty && gmailContr!.text.isNotEmpty) {
+                  updateProfile();
+                }
+              },
+              child: Container(
+                height: 55,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Colors.deepPurple, Colors.indigo], // HomePage gradient
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.deepPurple.withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    )
                   ],
                 ),
+                child: loading
+                    ? const Center(child: CircularProgressIndicator(color: Colors.white))
+                    : const Center(
+                        child: Text(
+                          "Update",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
               ),
-                             SizedBox(height: 10,),
-                                Text( 'Name',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10,),
-                             TextField(
-                           controller: nameContr ,
-                           showCursor: true,
-                           decoration: InputDecoration(
-                            
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12)
-                              
-                            )
-                           ),
-                             ),
-                             
-                             SizedBox(height: 20,),
-                             Text("Gmail",style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-SizedBox(height: 10,),
-                             TextField(
-                           controller: gmailContr ,
-                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12)
-                            )
-                           ),
-                           readOnly: true,
-                             ),
-                             SizedBox(height: 20,),
-                             Text("Contact", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                             SizedBox(height: 10,),
-                             IntlPhoneField(
-                              initialCountryCode: 'PK',
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12)
-                                )
-                              ),
-                              controller: contactContr,
-                             ),
-                           
-                                SizedBox(height: 30,),
-                                GestureDetector(
-                                  onTap: ()async{
-                if(contactContr!.text.isNotEmpty && gmailContr!.text.isNotEmpty){
-                updateProfile();           
-                }           
-              },
-                                  child: Center(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                     borderRadius: BorderRadius.circular(12)
-
-                                      ),
-                                      height: 60,
-                                      width: MediaQuery.of(context).size.width,
-                                      child:loading ? Center(child: CircularProgressIndicator(color: Colors.white,)) :
-                                      Center(child: Text('Update',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)) ,),
-                                  ),
-                                )
-                    
-                    
-            ],
-          ),
+            )
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+
+InputDecoration inputDecoration(String hint) {
+  return InputDecoration(
+    hintText: hint,
+    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+    filled: true,
+    fillColor: Colors.white,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide.none,
+    ),
+  );
+}
+
+Widget textInput(TextEditingController controller, String hint, {bool readOnly = false}) {
+  return TextField(
+    controller: controller,
+    readOnly: readOnly,
+    decoration: inputDecoration(hint),
+    style: const TextStyle(fontSize: 16),
+  );
+}
+
+TextStyle labelStyle() {
+  return const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.black87,
+  );
+}
 }
