@@ -13,6 +13,7 @@ class _SignInState extends State<SignIn> {
   final _keyform=GlobalKey<FormState>();
   final _gamilController=TextEditingController();
     final _passwordController=TextEditingController();
+    bool loading=false;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +86,9 @@ class _SignInState extends State<SignIn> {
                 GestureDetector(
                   onTap: ()async{
                     if(_keyform.currentState!.validate()){
+                      setState(() {
+                        loading=true;
+                      });
                       Auth().singIn(context,_gamilController.text, _passwordController.text);
                     }
                   },
@@ -99,7 +103,7 @@ class _SignInState extends State<SignIn> {
                         Colors.black87
                       ])
                     ),
-                    child: Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                    child: loading ?  CircularProgressIndicator() :Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
                   ),
                 ),
                 SizedBox(height: 30,),

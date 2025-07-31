@@ -81,7 +81,7 @@ Future _updateFirebase(String? imageUrl) async {
     'Contact': contactContr!.text,
     'image': imageUrl ?? '',
   });
- QuerySnapshot snapshot= await FirebaseFirestore.instance.collection("UserOder").where('userUid', isEqualTo:user!.uid ).get();
+ QuerySnapshot snapshot= await FirebaseFirestore.instance.collection("UserOrder").where('userUid', isEqualTo:user!.uid ).get();
  if(snapshot.docs.isNotEmpty){
   for(var doc in snapshot.docs){
     doc.reference.update({

@@ -40,7 +40,7 @@ User? user=FirebaseAuth.instance.currentUser;
                     ),
                   ),          
                   CircleAvatar(
-                  radius: 25,             
+                  radius: 30,             
                     backgroundImage: user!.photoURL != null ? NetworkImage(user!.photoURL!):
                     AssetImage('assets/download.png'))
                 ],               

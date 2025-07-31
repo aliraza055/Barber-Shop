@@ -23,6 +23,7 @@ class _BookingPageState extends State<BookingPage> {
   
   sendOrder()async{
     try{
+       
       String uid=randomAlphaNumeric(10);
    await FirebaseFirestore.instance.collection("UserOrder").doc(uid).set({
       "name":user!.displayName,
@@ -167,10 +168,9 @@ class _BookingPageState extends State<BookingPage> {
             ),
             GestureDetector(
               onTap: ()async{
-                setState(() {
-                  loading=true;
-                });
+            
             await sendOrder();
+              
               },
               child: Container(
                 margin: EdgeInsets.only(top: 30),
@@ -180,7 +180,7 @@ class _BookingPageState extends State<BookingPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
-                  child:loading ? CircularProgressIndicator() : Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                  child: Text("Book Now",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
                 ),
               ),
             )
