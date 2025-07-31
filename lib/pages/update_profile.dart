@@ -106,74 +106,120 @@ Future _updateFirebase(String? imageUrl) async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        margin: EdgeInsets.all(20),
-        child: Center(
+                  color: Colors.black12,
+
+        child: Container(
+          margin: EdgeInsets.only(left: 20,right: 20,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                   CircleAvatar(
-                radius: 60,
-                
-                backgroundImage:_image == null ? user!.photoURL == null ?
-                 AssetImage('assets/download.png'): NetworkImage(user!.photoURL!) : FileImage(_image!),
+              Center(child: Text("Update Profile",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)),
+              SizedBox(height: 30,),
+              Center(
+                child: Stack(
+                  children: [
+                     CircleAvatar(
+                  radius: 60,
+                  
+                  backgroundImage:_image == null ? user!.photoURL == null ?
+                   AssetImage('assets/download.png'): NetworkImage(user!.photoURL!) : FileImage(_image!),
+                     ),
+                   Positioned(
+                    bottom: -1,
+                    right: 4,
+                     child: GestureDetector(
+                      onTap: ()async{
+                      final selectImage=await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if(selectImage != null){
+                        setState(() {
+                          _image=File(selectImage.path);
+                        });
+                      
+                      }
+                      },
+                       child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          shape: BoxShape.circle
+                        ),
+                        padding: EdgeInsets.all(6),
+                        child:Icon(Icons.add) ,
+                                    ),
+                     ),
                    ),
-                 Positioned(
-                  bottom: -1,
-                  right: 4,
-                   child: GestureDetector(
-                    onTap: ()async{
-                    final selectImage=await ImagePicker().pickImage(source: ImageSource.gallery);
-                    if(selectImage != null){
-                      setState(() {
-                        _image=File(selectImage.path);
-                      });
-        
-                    }
-                    },
-                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        shape: BoxShape.circle
-                      ),
-                      padding: EdgeInsets.all(6),
-                      child:Icon(Icons.edit) ,
-                                  ),
-                   ),
-                 ),
-        
-                ],
+                      
+                  ],
+                ),
               ),
-                             SizedBox(height: 30,),
+                             SizedBox(height: 10,),
+                                Text( 'Name',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10,),
                              TextField(
                            controller: nameContr ,
+                           showCursor: true,
+                           decoration: InputDecoration(
+                            
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)
+                              
+                            )
+                           ),
                              ),
                              
-                             SizedBox(height: 30,),
+                             SizedBox(height: 20,),
+                             Text("Gmail",style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+SizedBox(height: 10,),
                              TextField(
                            controller: gmailContr ,
+                           decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)
+                            )
+                           ),
                            readOnly: true,
                              ),
-                             SizedBox(height: 30,),
+                             SizedBox(height: 20,),
+                             Text("Contact", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                             SizedBox(height: 10,),
                              IntlPhoneField(
                               initialCountryCode: 'PK',
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12)
+                                )
+                              ),
                               controller: contactContr,
                              ),
                            
                                 SizedBox(height: 30,),
-        
-              ElevatedButton(onPressed: ()async{
+                                GestureDetector(
+                                  onTap: ()async{
                 if(contactContr!.text.isNotEmpty && gmailContr!.text.isNotEmpty){
-                updateProfile();
-              
-                }
-             
-        
-              }, child:loading ? CircularProgressIndicator() : Text("Upagate"))
-        
+                updateProfile();           
+                }           
+              },
+                                  child: Center(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                     borderRadius: BorderRadius.circular(12)
+
+                                      ),
+                                      height: 60,
+                                      width: MediaQuery.of(context).size.width,
+                                      child:loading ? Center(child: CircularProgressIndicator(color: Colors.white,)) :
+                                      Center(child: Text('Update',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)) ,),
+                                  ),
+                                )
+                    
+                    
             ],
           ),
         ),

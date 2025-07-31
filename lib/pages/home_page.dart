@@ -113,25 +113,56 @@ User? user=FirebaseAuth.instance.currentUser;
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>BookingPage(name: services[index].name,image: services[index].image,)));
                   },
-                   child: Container(
-                    padding: EdgeInsets.only(top: 20,left: 10,right: 10),
-                    margin: EdgeInsets.only(left: 10,right: 10),
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
-                      
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset(services[index].image,height: 70,width: 70,),
-                                   SizedBox(height: 10,),
-                   
-                   Text(services[index].name,style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),              
-                        
-                      ],
-                    )
-                   ),
+     child:Container(
+  margin: EdgeInsets.symmetric(horizontal: 10),
+  padding: EdgeInsets.all(16),
+  height: 200,
+  decoration: BoxDecoration(
+    color: Colors.orange,
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Column(
+        children: [
+          Image.asset(
+            services[index].image,
+            height: 70,
+            width: 70,
+          ),
+          SizedBox(height: 10),
+          Text(
+            services[index].name,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      // Book Now button
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.blueAccent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          'Book Now',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+
                  );
                
                  }),
