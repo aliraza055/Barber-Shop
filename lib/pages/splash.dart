@@ -19,7 +19,8 @@ class _SplashState extends State<Splash> {
             Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Image.asset("assets/barber.png",),
-            ),           
+            ),        
+               
             SizedBox(height: 50,),
            GestureDetector
            (
