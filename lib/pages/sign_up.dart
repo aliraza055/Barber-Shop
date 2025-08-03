@@ -131,7 +131,8 @@ class _SignUpState extends State<SignUp> {
                         Colors.blue.shade900
                         ])
                       ),
-                      child:loading ? CircularProgressIndicator() :Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                      child:loading ? Center(child: CircularProgressIndicator(color: 
+                      Colors.white,)) :Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
                     ),
                   ),
                   SizedBox(height: 30,),

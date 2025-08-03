@@ -28,8 +28,8 @@ class _SignInState extends State<SignIn> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
         colors: [
-          Colors.red,
-            Colors.black
+          Colors.green.shade900,
+            Colors.green.shade900
         ],
             )
           ),
@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
                     
                               SizedBox(height: 20,),
             
-                Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                Text("Gmail",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 20,),
                 TextFormField(
                   validator: (value) {
@@ -67,7 +67,7 @@ class _SignInState extends State<SignIn> {
                 ),
                               SizedBox(height: 20,),
             
-                Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                Text("password",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
                 TextFormField(
                       validator: (value) {
@@ -99,11 +99,11 @@ class _SignInState extends State<SignIn> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(colors: [
-                        Colors.red,
-                        Colors.black87
+                        Colors.green.shade900,
+                        Colors.blue.shade900
                       ])
                     ),
-                    child: loading ?  CircularProgressIndicator() :Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                    child: loading ?  Center(child: CircularProgressIndicator(color: Colors.white,)) :Center(child: Text("SIGN IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
                   ),
                 ),
                 SizedBox(height: 30,),
@@ -118,7 +118,7 @@ class _SignInState extends State<SignIn> {
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
                   },
                   child: Text("Sign Up",
-                  style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)),
+                  style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold)),
                 )
                   ],
                 )
