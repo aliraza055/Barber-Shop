@@ -248,6 +248,7 @@ Widget textInput(TextEditingController controller, String hint, {bool readOnly =
   return TextField(
     controller: controller,
     readOnly: readOnly,
+   
     decoration: inputDecoration(hint),
     style: const TextStyle(fontSize: 16),
   );
