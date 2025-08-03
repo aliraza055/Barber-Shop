@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   preferredSize: Size.fromHeight(100),
   child: SafeArea(
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -79,12 +79,11 @@ class _HomePageState extends State<HomePage> {
               DrawerHeader(
                 decoration: BoxDecoration(color: Colors.black),
                 child:
-                    Text("Welcome, Ali", style: TextStyle(color: Colors.white)),
+                    Text("Welcome, ${user!.displayName}", style: TextStyle(color: Colors.white)),
               ),
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text("Home"),
-                onTap: () => print("clicked"),
               ),
               ListTile(
                 leading: Icon(Icons.admin_panel_settings),
@@ -95,12 +94,10 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 leading: Icon(Icons.location_on),
                 title: Text("Our Location"),
-                onTap: () => print("clicked"),
               ),
               ListTile(
                 leading: Icon(Icons.schedule),
                 title: Text("My Appointments"),
-                onTap: () => print("clicked"),
               ),
               Divider(),
               ListTile(

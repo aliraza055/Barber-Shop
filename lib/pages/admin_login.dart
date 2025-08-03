@@ -14,6 +14,7 @@ class _AdminLoginState extends State<AdminLogin> {
  final _keyform=GlobalKey<FormState>();
   final _gamilController=TextEditingController();
     final _passwordController=TextEditingController();
+    bool loading =false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,8 @@ class _AdminLoginState extends State<AdminLogin> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
         colors: [
-          Colors.red,
-            Colors.black
+          Colors.green.shade900,
+          Colors.green.shade900,
         ],
             )
           ),
@@ -50,7 +51,7 @@ class _AdminLoginState extends State<AdminLogin> {
                     
                               SizedBox(height: 20,),
             
-                Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                Text("Gmail",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 20,),
                 TextFormField(
                   validator: (value) {
@@ -67,7 +68,7 @@ class _AdminLoginState extends State<AdminLogin> {
                 ),
                               SizedBox(height: 20,),
             
-                Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                Text("password",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
                 TextFormField(
                       validator: (value) {
@@ -85,8 +86,10 @@ class _AdminLoginState extends State<AdminLogin> {
                 GestureDetector(
                   onTap: ()async{
                     if(_keyform.currentState!.validate()){
+                      setState(() {
+                        loading=true;
+                      });
                   login();
-                  print("yes");
                     }
                   },
                   child: Container(
@@ -96,11 +99,11 @@ class _AdminLoginState extends State<AdminLogin> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(colors: [
-                        Colors.red,
-                        Colors.black87
+                        Colors.green.shade900,
+                        Colors.blue.shade900
                       ])
                     ),
-                    child: Center(child: Text("LOG IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
+                    child:loading ? Center(child: CircularProgressIndicator(color: Colors.white,)): Center(child: Text("LOG IN",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
                   ),
                 ),
                 

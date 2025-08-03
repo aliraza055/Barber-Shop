@@ -19,9 +19,9 @@ class _NavigtionBaState extends State<NavigtionBa> {
   ];
 
  final items = <Widget>[
-  Icon(Icons.home_filled, size: 30, color: Colors.black),
-  Icon(Icons.calendar_month_rounded, size: 30, color: Colors.black),
-  Icon(Icons.person_3_rounded, size: 30, color: Colors.black),
+  Icon(Icons.home_filled, size: 30, color: Colors.white),
+  Icon(Icons.calendar_month_rounded, size: 30, color: Colors.white),
+  Icon(Icons.person_3_rounded, size: 30, color: Colors.white),
 ];
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class _NavigtionBaState extends State<NavigtionBa> {
         index: _index,
         items: items,
         height: 60,
-        color: Colors.white,
-        buttonBackgroundColor: Colors.white, 
+        color: Colors.black,
+        buttonBackgroundColor: Colors.black, 
         backgroundColor: Colors.transparent,
         animationDuration: Duration(milliseconds: 300),
         animationCurve: Curves.easeInOut,
