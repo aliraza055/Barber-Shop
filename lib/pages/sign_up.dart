@@ -33,8 +33,8 @@ class _SignUpState extends State<SignUp> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
           colors: [
-            Colors.red,
-              Colors.black
+            Colors.green.shade900,
+              Colors.green.shade900
           ],
               )
             ),
@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Name",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                  Text("Name",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   TextFormField(
                   controller: _nameController,
@@ -64,12 +64,12 @@ class _SignUpState extends State<SignUp> {
                   },
                     decoration: InputDecoration(
                       hintText: "Enter your name",
-                      prefixIcon: Icon(Icons.man)
+                      prefixIcon: Icon(Icons.person)
                     ),
                   ),
                                 SizedBox(height: 20,),
               
-                  Text("Gmail",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                  Text("Gmail",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   TextFormField(
                     controller: _gmailController,
@@ -85,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                                 SizedBox(height: 20,),
-                     Text("Contact ",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                     Text("Contact ",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   IntlPhoneField(
                     controller: _contactController,
@@ -95,10 +95,11 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                     SizedBox(height: 20,),
-                  Text("password",style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold),),
+                  Text("password",style: TextStyle(color:Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                   SizedBox(height: 10,),
                   TextFormField(
                     controller: _passwordController,
+                    obscureText: true,
                     validator: (value) {
                       if(value==null || value.isEmpty){
                         return "This field cannot be empty!";
@@ -126,8 +127,8 @@ class _SignUpState extends State<SignUp> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         gradient: LinearGradient(colors: [
-                          Colors.red,
-                          Colors.black87
+                          Colors.green.shade900,
+                        Colors.blue.shade900
                         ])
                       ),
                       child:loading ? CircularProgressIndicator() :Center(child: Text("SIGN UP",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),)),
@@ -144,7 +145,7 @@ class _SignUpState extends State<SignUp> {
                       Navigator.push(context, MaterialPageRoute(builder: (_)=>SignIn()));
                     },
                     child: Text("Sign In",
-                    style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)),
+                    style: TextStyle(color:Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold)),
                   )
                     ],
                   )
