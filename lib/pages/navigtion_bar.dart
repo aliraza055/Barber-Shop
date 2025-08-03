@@ -1,5 +1,5 @@
-import 'package:barber_shop/pages/admin_order.dart';
 import 'package:barber_shop/pages/home_page.dart';
+import 'package:barber_shop/pages/my_order.dart';
 import 'package:barber_shop/pages/user_profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class _NavigtionBaState extends State<NavigtionBa> {
   int _index = 0;
   final List<Widget> _page = [
     HomePage(),
-    AdminOrder(),
+    MyOrder(),
     UserProfile(),
   ];
 
