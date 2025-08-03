@@ -34,6 +34,6 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/barber-shop-app.git
+   git clone https://github.com/aliraza055/barber-shop-app.git
    cd barber-shop-app
 
