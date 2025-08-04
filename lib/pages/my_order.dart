@@ -67,8 +67,8 @@ class _MyOrderState extends State<MyOrder> {
                         children: [
                           CircleAvatar(
                             radius: 40,
-                            backgroundImage: data['userPhoto'].toString().trim().isNotEmpty
-                                ? NetworkImage(data['userPhoto']) as ImageProvider
+                            backgroundImage: data['serviceImage'].toString().trim().isNotEmpty
+                                ? AssetImage(data['serviceImage'])as ImageProvider
                                 : const AssetImage('assets/download.png'),
                           ),
                           const SizedBox(width: 16),
@@ -78,23 +78,16 @@ class _MyOrderState extends State<MyOrder> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  data['name'],
+                                  data['services'],
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87,
                                   ),
                                 ),
+                          
                                 const SizedBox(height: 4),
-                                Text(
-                                  "+92${data['userContact']}",
-                                  style: const TextStyle(fontSize: 14, color: Colors.black54),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  "Service: ${data['services']}",
-                                  style: const TextStyle(fontSize: 14, color: Colors.black54),
-                                ),
+                             
                                 Text(
                                   "Date: ${data['date']}",
                                   style: const TextStyle(fontSize: 14, color: Colors.black54),
@@ -109,31 +102,7 @@ class _MyOrderState extends State<MyOrder> {
                         ],
                       ),
 
-                      const SizedBox(height: 16),
-
-                      // Gradient Done Button
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Colors.deepPurple, Colors.indigo], // HomePage theme
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text(
-                            "Done",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ),
-                      ),
+                      
                     ],
                   ),
                 );
