@@ -31,8 +31,8 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
 ## 📸 App Screenshots
 
 <div style="display: flex; gap: 10px;">
-  <img src="assets/home.png" alt="Home" width="45%"/>
-  <img src="assets/home.png" alt="Profile" width="45%"/>
+  <img src="assets/home.jpg" alt="Home" width="45%"/>
+  <img src="assets/home.jpg" alt="Profile" width="45%"/>
 </div>
 
 
