@@ -29,6 +29,17 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
 | UI Components      | Material Design, Custom Widgets  |
 
 ---
+## 📸 App Screenshots
+
+### 🏠 Home Page
+![Home Screen](assets/home.jpg)
+
+### 👤 Profile Page
+![Profile Screen](assets/profile.jpg)
+
+### ✂️ Booking Page
+![Booking Screen](assets/booking.jpg)
+
 
 ## 📦 Installation
 
