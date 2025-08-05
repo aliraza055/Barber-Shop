@@ -25,7 +25,7 @@ class _AdminOrderState extends State<AdminOrder> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection("UserOrder").orderBy('date',descending: true ).snapshots(),
+          stream: FirebaseFirestore.instance.collection("UserOrder").orderBy('date',descending: false ).snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
