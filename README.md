@@ -40,8 +40,8 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
     <td align="center"><b>🏠 Home Page</b></td>
   </tr>
   <tr>
-    <td><img src="assets/signup.jpg" width="250"/></td>
-    <td><img src="assets/home.jpg" width="250"/></td>
+    <td><img src="assets/signup.jpg" width="200" style="padding: 8px;"/></td>
+    <td><img src="assets/home.jpg" width="200" style="padding: 8px;"/></td>
   </tr>
 </table>
 
@@ -55,8 +55,8 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
     <td align="center"><b>📦 User Orders</b></td>
   </tr>
   <tr>
-    <td><img src="assets/home.jpg" width="250"/></td>
-    <td><img src="assets/booking.jpg" width="250"/></td>
+    <td><img src="assets/home.jpg" width="200" style="padding: 8px;"/></td>
+    <td><img src="assets/booking.jpg" width="200" style="padding: 8px;"/></td>
   </tr>
 </table>
 
@@ -70,8 +70,8 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
     <td align="center"><b>📝 Update Profile</b></td>
   </tr>
   <tr>
-    <td><img src="assets/profile.jpg" width="250"/></td>
-    <td><img src="assets/update_profile.jpg" width="250"/></td>
+    <td><img src="assets/profile.jpg" width="200" style="padding: 8px;"/></td>
+    <td><img src="assets/update_profile.jpg" width="200" style="padding: 8px;"/></td>
   </tr>
 </table>
 
@@ -80,15 +80,16 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
 ### 🧑‍💼 Admin Login & 📋 Admin Orders
 
 <table>
-  <tr>ng
+  <tr>
     <td align="center"><b>🧑‍💼 Admin Login</b></td>
     <td align="center"><b>📋 Admin Orders</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/admin_login.jpg" width="250"/></td>
-    <td><img src="screenshots/admin_orders.jpg" width="250"/></td>
+    <td><img src="assets/admin_login.jpg" width="200" style="padding: 8px;"/></td>
+    <td><img src="assets/admin_orders.jpg" width="200" style="padding: 8px;"/></td>
   </tr>
 </table>
+
 
 
 
