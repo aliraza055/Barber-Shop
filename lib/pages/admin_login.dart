@@ -51,7 +51,7 @@ class _AdminLoginState extends State<AdminLogin> {
                     
                               SizedBox(height: 20,),
             
-                Text("Gmail",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
+                Text("Name",style: TextStyle(color: Colors.green.shade900,fontSize: 24,fontWeight: FontWeight.bold),),
                 SizedBox(height: 20,),
                 TextFormField(
                   validator: (value) {
