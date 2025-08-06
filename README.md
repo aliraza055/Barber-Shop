@@ -44,7 +44,6 @@ A modern barber shop app built using **Flutter**, **Firebase Authentication**, *
     <td><img src="assets/home.jpg" width="200" style="padding: 8px;"/></td>
   </tr>
 </table>
-
 ---
 
 ### ✂️ Booking Page & 📦 User Orders
